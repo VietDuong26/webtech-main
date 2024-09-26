@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link font jetbrains-mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Link font inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>ManPage</title>
+</head>
+<body>
+    <div class="main-woman-page">
+        <div class="header">
+            <div class="header_navbar jetbrains-mono">
+                <div class="nav-logo">
+                    <a href="index.html"><img class="nav-logo-img logo-img" src="/static/image/logo_big.png" alt="Logo"></a>
+                    <p class="nav-logo-name logo-name">shopper</p>
+                </div>
+    
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
+                </ul>
+    
+                <div class="nav-login-cart">
+                    <button class="nav-login-cart-btn btn">Login</button>
+                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
+                    <div class="nav-login-cart-count">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop-category-container">
+            <div class="shop-category-banner">
+                <a href="#"><img class="shop-category-banner-img" src="/static/image/banner_women.png" alt=""></a>
+            </div>
+            <div class="shop-category-indexSort jetbrains-mono">
+                <p>
+                    <span>Showing 1 - 12</span> out of 36 products
+                </p>
+                <div class="shop-category-sort">
+                    Sort by <img src="/static/image/dropdown_icon.png" alt="">
+                </div>
+            </div>
+            <div class="shop-category-products" th:each="product:${woman_products}">
+                <div>
+                    <a style="text-decoration: none;" href="">
+                        <img class="shop-category-item-woman item-img-size" th:src="${'/static/image/'+product.image}" alt="">
+                        <p class="shop-category-item-woman-name item-name" th:text="${product.productName}"></p>
+                    </a>
+                    <span class="shop-category-item-woman-price item-price">
+                        <p class="shop-category-item-woman-new-price item-new-price" th:text="${product.price}"></p>
+                        <p class="shop-category-item-woman-old-price item-old-price">$80</p>
+                    </span>
+                </div>
+            </div>
+            <div class="shop-category-loadmore jetbrains-mono">
+                Explore More
+            </div>
+        </div>
+
+        <div class="footer jetbrains-mono">
+            <div class="footer-logo">
+                <img class="footer-logo-img logo-img" src="/static/image/logo_big.png" alt="">
+                <p class="footer-logo-name logo-name">shopper</p>
+            </div>
+    
+            <ul class="footer-links">
+                <li>Company</li>
+                <li>Products</li>
+                <li>Offices</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+    
+            <div class="footer-social-icon">
+                <div class="footer-icons-container">
+                    <img src="/static/image/instagram_icon.png" alt="">
+                </div>
+                <div class="footer-icons-container">
+                    <img src="/static/image/pintester_icon.png" alt="">
+                </div>
+                <div class="footer-icons-container">
+                    <img src="/static/image/whatsapp_icon.png" alt="">
+                </div>
+            </div>
+    
+            <div class="footer-copyright">
+                <hr />
+                <p>Copyright ©2024 - All Right Reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

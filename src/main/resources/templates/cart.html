@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link font jetbrains-mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Link font inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Link font bricolage-grotesque -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>Cart Items</title>
+</head>
+<body>
+    <div id="main-cartitems-page">
+        <div class="header">
+            <div class="header_navbar jetbrains-mono">
+                <div class="nav-logo">
+                    <a href="index.html"><img class="nav-logo-img logo-img" src="/static/image/logo_big.png" alt="Logo"></a>
+                    <p class="nav-logo-name logo-name">shopper</p>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a href="">Shop</a></li>
+                    <li class="nav-menu-item"><a href="">Man</a></li>
+                    <li class="nav-menu-item"><a href="">Woman</a></li>
+                    <li class="nav-menu-item"><a href="">Kid</a></li>
+                </ul>
+
+                <div class="nav-login-cart">
+                    <button class="nav-login-cart-btn btn">Login</button>
+                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
+                    <div class="nav-login-cart-count">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="cartitems-container">
+            <div class="cartitems-format-main bricolage-grotesque">
+                <p>Products</p>
+                <p>Title</p>
+                <p>Price</p>
+                <p>Quantity</p>
+                <p>Total</p>
+                <p>Remove</p>
+            </div>
+            <hr />
+            <div class="cartitems-product-wrap bricolage-grotesque">
+                <div>
+                    <div class="cartitems-format cartitems-format-main">
+                        <img src="/static/image/product_27.png" alt="" class="cartitems-product-img">
+                        <p>Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse</p>
+                        <p>$80</p>
+                        <button class="cartitems-quantity">1</button>
+                        <p>$80</p>
+                        <img src="/static/image/cart_cross_icon.png" alt="" class="cartitems-remove-icon">
+                    </div>
+                    <hr />
+                </div>
+                <div>
+                    <div class="cartitems-format cartitems-format-main">
+                        <img src="/static/image/product_36.png" alt="" class="cartitems-product-img">
+                        <p>Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse</p>
+                        <p>$80</p>
+                        <button class="cartitems-quantity">2</button>
+                        <p>$160</p>
+                        <img src="/static/image/cart_cross_icon.png" alt="" class="cartitems-remove-icon">
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <div class="cartitems-down inter">
+                <div class="cartitems-total">
+                    <h1 class="bricolage-grotesque">Cart Totals</h1>
+                    <div class="cartitems-total-item-wrap">
+                        <div class="cartitems-total-item">
+                            <p>Subtotal</p>
+                            <p>$240</p>
+                        </div>
+                        <hr />
+                        <div class="cartitems-total-item">
+                            <p>Shipping Fee</p>
+                            <p>Free</p>
+                        </div>
+                        <hr />
+                        <div class="cartitems-total-item">
+                            <h3>Total</h3>
+                            <h3 class="">$240</h3>
+                        </div>
+                    </div>
+                    <button class="btn-for-buy-product">PROCEED TO CHECKOUT</button>
+                </div>
+                <div class="cartitems-promocode inter">
+                    <p>If you have a promo code, Enter it here: </p>
+                    <div class="cartitems-promobox">
+                        <input type="text" placeholder='promo code' />
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</body>
+</html>

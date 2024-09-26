@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <select id="product">
+        <option th:each="product:${products}" th:value="${product.productId}" th:text="${product.productName}"></option>
+    </select>
+    <select id="color">
+        <option th:each="color:${colors}" th:value="${color.colorId}" th:text="${color.colorName}"></option>
+    </select>
+    <select id="size">
+        <option th:each="size:${sizes}" th:value="${size.sizeId}" th:text="${size.sizeName}"></option>
+    </select>
+    <input type="number" placeholder="0" id="quantity">
+    <button id="add">Nhập</button>
+    <script>
+        document.querySelector('#add').addEventListener("click",()=>{
+            window.location='/receipt?product='+document.querySelector('#product').value+'&color='+document.querySelector('#color').value+'&size='+document.querySelector('#size').value+'&quantity='+document.querySelector('#quantity').value;
+        })
+    </script>
+</body>
+</html>
