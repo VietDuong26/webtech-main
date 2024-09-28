@@ -23,7 +23,13 @@ public class Config {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.authorizeHttpRequests((request)->request
-                .requestMatchers("/login/**","/regist/**","/index/**","/Man_HomePage/**","/Woman_HomePage/**","/Kid_HomePage/**").permitAll()
+                .requestMatchers("/login/**"
+                        ,"/regist/**"
+                        ,"/index/**"
+                        ,"/Man_HomePage/**"
+                        ,"/Woman_HomePage/**"
+                        ,"/Kid_HomePage/**"
+                        ,"/detail/**").permitAll()
                 .requestMatchers("/static/**").permitAll()
                 .requestMatchers("/addNewUser/**"
                 ,"/addNewRole/**"
@@ -36,7 +42,7 @@ public class Config {
                 ,"/getAllColor/**"
                 ,"/getAllRole/**"
                 ,"/getAllSize/**"
-                ,"getAllUser/**").hasRole("ADMIN")
+                ,"/getAllUser/**").hasRole("ADMIN")
                 .requestMatchers("/Cart/**").hasRole("USER")
                 .anyRequest().authenticated())
 //                .anyRequest().permitAll())

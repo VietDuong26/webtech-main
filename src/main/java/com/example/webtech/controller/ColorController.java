@@ -1,5 +1,4 @@
 package com.example.webtech.controller;
-import com.example.webtech.entity.Category;
 import com.example.webtech.entity.Color;
 import com.example.webtech.service.ColorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,12 @@ public class ColorController {
     @GetMapping("/getAllColor")
     String getAllColor(Model model){
         model.addAttribute("colors",colorService.getAll());
-        return "getAllColor";
+        return "admin/getAllColor";
     }
     @GetMapping("/addNewColor")
     String show_addNewColor(Model model){
         model.addAttribute("new_color",new Color());
-        return "addColor";
+        return "admin/addColor";
     }
     @PostMapping("/addNewColor")
     String addNewColor(Model model
@@ -33,7 +32,7 @@ public class ColorController {
     @GetMapping("/updateColor/{id}")
     String show_updateColor(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_color",colorService.findById(id));
-        return "updateColor";
+        return "admin/updateColor";
     }
     @PostMapping("/updateColor")
     String updateColor(@ModelAttribute("selected_color")Color color){

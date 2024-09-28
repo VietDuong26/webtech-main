@@ -1,14 +1,11 @@
 package com.example.webtech.controller;
 
-import com.example.webtech.entity.Color;
 import com.example.webtech.entity.Size;
 import com.example.webtech.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Set;
 
 @Controller
 public class SizeController {
@@ -17,12 +14,12 @@ public class SizeController {
     @GetMapping("/getAllSize")
     String getAllSize(Model model){
         model.addAttribute("sizes",sizeService.getAll());
-        return "getAllSize";
+        return "admin/getAllSize";
     }
     @GetMapping("/addNewSize")
     String show_addNewSize(Model model){
         model.addAttribute("new_size",new Size());
-        return "addSize";
+        return "admin/addSize";
     }
     @PostMapping("/addNewSize")
     String addNewColor(Model model
@@ -36,7 +33,7 @@ public class SizeController {
     @GetMapping("/updateSize/{id}")
     String show_updateSize(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_size",sizeService.findById(id));
-        return "updateSize";
+        return "admin/updateSize";
     }
     @PostMapping("/updateSize")
     String updateSize(@ModelAttribute("selected_size")Size size){

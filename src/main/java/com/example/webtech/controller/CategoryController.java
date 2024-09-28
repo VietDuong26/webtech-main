@@ -7,10 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 @Controller
 public class CategoryController {
     @Autowired
@@ -18,12 +14,12 @@ public class CategoryController {
     @GetMapping("/getAllCategory")
     String getAllCategory(Model model){
         model.addAttribute("categories",categoryService.getAll());
-        return "getAllCategory";
+        return "admin/getAllCategory";
     }
     @GetMapping("/addNewCategory")
     String show_addNewCategory(Model model){
         model.addAttribute("new_category",new Category());
-        return "addCategory";
+        return "admin/addCategory";
     }
     @PostMapping("/addNewCategory")
     String addNewCategory(Model model
@@ -37,7 +33,7 @@ public class CategoryController {
     @GetMapping("/updateCategory/{id}")
     String show_updateCategory(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_category",categoryService.findById(id));
-        return "updateCategory";
+        return "admin/updateCategory";
     }
     @PostMapping("/updateCategory")
     String updateCategory(@ModelAttribute("selected_category")Category category){
@@ -52,6 +48,6 @@ public class CategoryController {
     @GetMapping("/findCategoryByName")
     String findCategoryByName(Model model,@RequestParam("name")String name){
         model.addAttribute("categories",categoryService.findByName(name));
-        return "getAllCategory";
+        return "admin/getAllCategory";
     }
 }

@@ -6,7 +6,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -26,12 +25,14 @@ public class Product {
     private String description;
     private String image;
     private long sale;
+
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    private List<CartItem> cartItems;
+
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-    private Set<OrderItem> orderItems;
     @OneToMany(mappedBy = "product")
     private List<Stock> stocks;
 }

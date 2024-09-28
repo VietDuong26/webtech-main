@@ -21,10 +21,10 @@
                 </div>
 
                 <ul class="nav-menu">
-                    <li class="nav-menu-item"><a href="">Shop</a></li>
-                    <li class="nav-menu-item"><a href="">Man</a></li>
-                    <li class="nav-menu-item"><a href="">Woman</a></li>
-                    <li class="nav-menu-item"><a href="">Kid</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
                 </ul>
 
                 <div class="nav-login-cart">
@@ -37,19 +37,16 @@
         
         <div class="login-signup-container">
             <div class="login-signup-form">
-                <form th:action="@{/addNewUser}" method="post" th:object="${user}" class="login-signup-form-wrap-content">
+                <form th:action="@{/regist}" method="post" th:object="${user}" class="login-signup-form-wrap-content">
                     <h1>Sign Up</h1>
                     <div class="login-signup-fields">
                         <input class="login-signup-fields-input" type="text" placeholder="Your name" th:field="*{userName}">
-                        <input class="login-signup-fields-input" type="email" placeholder="Email Address" th:field="*{phoneNumber}">
+                        <input class="login-signup-fields-input" type="text" placeholder="Phone Number" th:field="*{phoneNumber}">
                         <input class="login-signup-fields-input" type="password" placeholder="Password" th:field="*{password}">
+                        <input class="login-signup-fields-input" type="text" placeholder="Address" th:field="*{address}">
                     </div>
-                    <button class="login-signup-btn">Continue</button>
+                    <button type="submit" class="login-signup-btn">Continue</button>
                     <p class="ogin-signup-text-to-switch">Already have an account?<span onclick="window.location='/login'">Login here</span></p>
-                    <div class="login-signup-agree">
-                        <input class="" type="checkbox" name='' id='' />
-                        <p>By continuing, i agree to the term of use & privacy policy.</p>
-                    </div>
                 </form>
             </div>
         </div>

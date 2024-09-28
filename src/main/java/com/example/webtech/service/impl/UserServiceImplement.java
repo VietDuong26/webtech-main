@@ -71,4 +71,9 @@ public class UserServiceImplement implements UserService {
     public User findById(long id) {
         return repository.findById(id).get();
     }
+
+    @Override
+    public User findByPhoneNumber(String phoneNumber) {
+        return repository.findByPhoneNumber(phoneNumber);
+    }
 }

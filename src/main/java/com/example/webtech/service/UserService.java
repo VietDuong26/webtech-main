@@ -14,4 +14,6 @@ public interface UserService {
     boolean checkIfExist(String phoneNumber);
 
     User findById(long id);
+
+    User findByPhoneNumber(String phoneNumber);
 }

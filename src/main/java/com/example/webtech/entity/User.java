@@ -3,6 +3,7 @@ package com.example.webtech.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,8 +21,10 @@ public class User {
     private String address;
     private String phoneNumber;
     private String password;
+
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private Set<Orders> orders;
+    private List<CartItem> cartItems;
+
     @ManyToOne
     @JoinColumn(name="role_id",nullable = false)
     private Role role;

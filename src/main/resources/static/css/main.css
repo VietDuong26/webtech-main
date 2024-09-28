@@ -549,7 +549,6 @@
 
 .productdisplay-right-price-old {
     color: var(--price-old-color);
-    text-decoration: line-through;
 }
 
 .productdisplay-right-price-new {
