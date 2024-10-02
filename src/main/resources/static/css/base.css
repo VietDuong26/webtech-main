@@ -1,0 +1,118 @@
+:root {
+    --black-color: #000;
+    --white-color: #fff;
+    --btn-color: #D03636;
+    --price-old-color: #7F7F7F;
+    --primary-color: #F43E3A;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+.html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.jetbrains-mono {
+    font-family: "JetBrains Mono", monospace;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.bricolage-grotesque {
+    font-family: "Bricolage Grotesque", sans-serif;
+}
+
+.btn {
+    height: 55px;
+    border-radius: 75px;
+    cursor: pointer;
+    font-size: 20px;
+    outline: none;
+}
+
+.btn-for-buy-product {
+    padding: 16px 40px;
+    margin-top: 22px;
+    margin-bottom: 36px;
+    width: 140px;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 84.4px;
+    height: 84px;
+}
+
+.logo-name {
+    text-transform: uppercase;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--black-color);
+    margin-left: 8px;
+}
+
+.for-heading {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 500;
+    color: var(--black-color);
+    margin: 0;
+}
+
+.for-hr {
+    width: 336px;
+    height: 4px;
+    background-color: var(--black-color);
+    border-radius: 10px;
+    margin-top: 11px;
+    margin-bottom: 48px;
+}
+
+.mt-104 {
+    margin-top: 104px;
+}
+
+.item-img-size {
+    width: 294px;
+    height: 340px;
+}
+
+.item-name {
+    color: var(--black-color);
+    font-size: 21px;
+    font-weight: 400;
+    width: 294px;
+    word-wrap: break-word;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.item-price {
+    display: flex;
+    font-size: 24px;
+    font-weight: 500;
+    margin: -12px 0 0 0;
+}
+
+.item-new-price {
+    color: var(--black-color);
+}
+
+.item-old-price {
+    color: var(--price-old-color);
+    text-decoration: line-through;
+    margin-left: 60px;
+}

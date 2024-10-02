@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link font jetbrains-mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <!-- Link font inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>E-Commerce</title>
+</head>
+
+<body>
+    <div id="main-home-page" class="inter">
+        <!-- Begin header -->
+        <div class="header">
+            <div class="header_navbar jetbrains-mono">
+                <div class="nav-logo">
+                    <div class="nav-logo-img logo-img" style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative" alt="Logo">
+                        <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
+                    </div>
+                    <p class="nav-logo-name logo-name">shopper</p>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a style="color:grey;">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
+                </ul>
+
+                <div class="nav-login-cart" >
+                    <button th:switch="${user}" class="nav-login-cart-btn btn" >
+                        <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
+                        <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
+                    </button>
+                    <div th:switch="${user}" style="width:50px;height:40px;background-image: url('/static/image/cart_icon.png');background-size: 100% 100%;position: relative">
+                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="existed" th:href="@{/Cart}"></a>
+                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                    </div>
+                    <div class="nav-login-cart-count" th:text="${cart_size}"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End header -->
+
+        <!-- Begin container -->
+        <div class="container">
+            <!-- Begin banner -->
+            <div class="banner">
+                <div class="banner-left">
+                    <h2>NEW ARRIVALS ONLY</h2>
+                    <div class="banner-left-wrap">
+                        <div class="banner-left-hand-icon">
+                            <p>new</p>
+                            <img class="banner-left-hand-icon-img" src="/static/image/hand_icon.png" alt="hand icon">
+                        </div>
+                        <p>collections</p>
+                        <p>for everyone</p>
+                    </div>
+                    <div class="banner-left-lastest-btn btn">
+                        <div>Latest Collection</div>
+                        <img src="/static/image/arrow.png" alt="arrow icon" />
+                    </div>
+                </div>
+
+                <div class="banner-right">
+                    <img src="/static/image/hero_image.png" alt="hero image">
+                </div>
+            </div>
+            <!-- End banner -->
+
+            <!-- Begin popular -->
+            <div class="popular mt-104">
+                <h1 class="heading-for-popular-collections">POPULAR IN WOMENS</h1>
+                <hr class="hr-for-popular-collections" />
+                <div class="popular-item" th:each="product:${popular_products}">
+                    <div>
+                        <a style="text-decoration: none;" href=""><!--Chuyển tới trang chi tiết sản phẩm nhận vào id sản phẩm-->
+                            <img class="popular-item-img item-img-size" th:src="'/static/image/'+${product.image}" alt="">
+                            <p class="popular-item-name item-name" th:text="${product.productName}"></p>
+                        </a>
+                        <span class="popular-item-price item-price">
+                            <p class="popular-item-new-price item-new-price" th:text="${product.price}">$80</p>
+                            <a th:href="${'/detail/'+product.productId}">Detail</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- End popular -->
+
+            <!-- Begin offers -->
+            <div class="offers mt-104">
+                <div class="offer-left">
+                    <h1>Exclusive</h1>
+                    <h1>Offers for you</h1>
+                    <p>ONLY ON BEST SELLERS PRODUCTS</p>
+                    <button class="offer-left-btn btn">Check now</button>
+                </div>
+
+                <div class="offer-right">
+                    <img src="/static/image/exclusive_image.png" alt="">
+                </div>
+            </div>
+            <!-- End offers -->
+
+            <!-- Begin new collections -->
+            <div class="new-collections mt-104">
+                <h1 class="heading-for-popular-collections">NEW COLLECTIONS</h1>
+                <hr class="hr-for-popular-collections" />
+                <div class="collections" th:each="product:${latest_products}">
+                    <div>
+                        <a style="text-decoration: none;" href="">
+                            <img class="collections-item-img item-img-size" th:src="${'/static/image/'+product.image}" alt="">
+                            <p class="collections-item-name item-name" th:text="${product.productName}"></p>
+                        </a>
+                        <span class="collections-item-price item-price">
+                            <p class="collections-item-new-price item-new-price"th:text="${product.price}"></p>
+                            <a th:href="${'/detail/'+product.productId}">Detail</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- End new collection -->
+
+            <!-- Begin newsletter -->
+            <div class="newsletter mt-104"><!--Học send email bằng springboot-->
+                <h1>Get Exclusive Offers On your Email</h1>
+                <p>Subscribe to our newletter and stay updated</p>
+                <div class="newsletter-wrap-email">
+                    <input type="email" placeholder='Your Email ID' />
+                    <button>Subscribe</button>
+                </div>
+            </div>
+            <!-- End newsletter -->
+        </div>
+        <!-- End Container -->
+
+        <!-- Begin footer -->
+        <div class="footer jetbrains-mono">
+            <div class="footer-logo">
+                <img class="footer-logo-img logo-img" src="/static/image/logo_big.png" alt="">
+                <p class="footer-logo-name logo-name">shopper</p>
+            </div>
+
+            <ul class="footer-links">
+                <li>Branches</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+
+            <div class="footer-social-icon">
+                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/instagram_icon.png');width:25px;height:25px;position:relative;">
+                    <a href="" style="width:100%;height:100%;position: absolute"></a>
+                </div>
+                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/pintester_icon.png');width:25px;height:25px;position:relative;">
+                    <a href="" style="width:100%;height:100%;position: absolute"></a>
+                </div>
+                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/whatsapp_icon.png');width:25px;height:25px;position:relative;">
+                    <a href="" style="width:100%;height:100%;position: absolute"></a>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <hr />
+                <p>Copyright ©2024 - All Right Reserved.</p>
+            </div>
+        </div>
+        <!-- End footer -->
+    </div>
+</body>
+
+</html>

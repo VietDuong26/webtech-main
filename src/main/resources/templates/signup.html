@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>SignUp</title>
+</head>
+<body>
+    <div id="main-signup-page" class="jetbrains-mono">
+        <div class="header">
+            <div class="header_navbar jetbrains-mono">
+                <div class="nav-logo">
+                    <a href="index.html"><img class="nav-logo-img logo-img" src="/static/image/logo_big.png" alt="Logo"></a>
+                    <p class="nav-logo-name logo-name">shopper</p>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
+                </ul>
+
+                <div class="nav-login-cart">
+                    <button class="nav-login-cart-btn btn">Login</button>
+                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
+                    <div class="nav-login-cart-count">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="login-signup-container">
+            <div class="login-signup-form">
+                <form th:action="@{/regist}" method="post" th:object="${user}" class="login-signup-form-wrap-content">
+                    <h1>Sign Up</h1>
+                    <div class="login-signup-fields">
+                        <input class="login-signup-fields-input" type="text" placeholder="Your name" th:field="*{userName}">
+                        <input class="login-signup-fields-input" type="text" placeholder="Phone Number" th:field="*{phoneNumber}">
+                        <input class="login-signup-fields-input" type="password" placeholder="Password" th:field="*{password}">
+                        <input class="login-signup-fields-input" type="text" placeholder="Address" th:field="*{address}">
+                    </div>
+                    <button type="submit" class="login-signup-btn">Continue</button>
+                    <p class="ogin-signup-text-to-switch">Already have an account?<span onclick="window.location='/login'">Login here</span></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

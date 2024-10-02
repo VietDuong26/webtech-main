@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link font jetbrains-mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <!-- Link font inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Link font bricolage-grotesque -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <title>Cart Items</title>
+</head>
+<body>
+    <div id="main-cartitems-page">
+        <div class="header">
+            <div class="header_navbar jetbrains-mono">
+                <div class="nav-logo">
+                    <div class="nav-logo-img logo-img" style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative" alt="Logo">
+                        <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
+                    </div>
+                    <p class="nav-logo-name logo-name">shopper</p>
+                </div>
+
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
+                </ul>
+
+                <div class="nav-login-cart">
+                    <button th:switch="${user}" class="nav-login-cart-btn btn" >
+                        <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
+                        <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
+                    </button>
+                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
+                    <div class="nav-login-cart-count" th:text="${cart_items.size()}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cartitems-container">
+            <div class="cartitems-format-main bricolage-grotesque">
+                <p>Products</p>
+                <p>Title</p>
+                <p>Price</p>
+                <p>Quantity</p>
+                <p>Total</p>
+                <p>Remove</p>
+            </div>
+            <hr />
+            <div class="cartitems-product-wrap bricolage-grotesque" th:each="item:${cart_items}">
+                <div>
+                    <div class="cartitems-format cartitems-format-main">
+                        <img th:src="${'/static/image/'+item.product.image}" alt="" class="cartitems-product-img">
+                        <p th:text="${item.product.productName}"></p>
+                        <p th:text="${item.product.price}"></p>
+                        <a th:href="${'/minusItem/'+item.id}">-</a>
+                        <button class="cartitems-quantity" th:text="${item.quantity}"></button>
+                        <a th:href="${'/addOneToCart/'+item.id}">+</a>
+                        <p th:text="${item.product.price*item.quantity}"></p>
+                        <a th:href="${'/removeAllFromCart/'+item.id}">
+                            <img src="/static/image/cart_cross_icon.png" alt="" class="cartitems-remove-icon">
+                        </a>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <div class="cartitems-down inter">
+                <div class="cartitems-total">
+                    <h1 class="bricolage-grotesque">Cart Totals</h1>
+                    <div class="cartitems-total-item-wrap">
+                        <div class="cartitems-total-item">
+                            <p>Subtotal</p>
+                            <p th:text="${subtotal}"></p>
+                        </div>
+                        <hr />
+                        <div class="cartitems-total-item">
+                            <p>Shipping Fee</p>
+                            <p>30000 &#8363;</p>
+                        </div>
+                        <hr />
+                        <div class="cartitems-total-item">
+                            <h3>Total</h3>
+                            <h3 th:text="${subtotal+30000}"></h3>
+                        </div>
+                    </div>
+                    <span th:switch="${cart_items.isEmpty()}">
+                        <a th:case="false" th:href="${'/checkout?cart='+cart_items+'&date='+#dates.createNow()}" class="btn-for-buy-product" >PROCEED TO CHECKOUT</a>
+                        <a th:case="true" class="btn-for-buy-product" >PROCEED TO CHECKOUT</a>
+                    </span>
+                </div>
+                <div class="cartitems-promocode inter">
+                    <p>If you have a promo code, Enter it here: </p>
+                    <div class="cartitems-promobox">
+                        <input type="text" placeholder='promo code' />
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</body>
+</html>
