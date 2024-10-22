@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
         rel="stylesheet">
     <!-- Link font inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
@@ -20,7 +18,12 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/base.css">
-    <title>E-Commerce</title>
+    <link rel="stylesheet" href="./assets/css/animation.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>SHOPPER</title>
 </head>
 
 <body>
@@ -63,25 +66,45 @@
         <!-- Begin container -->
         <div class="container">
             <!-- Begin banner -->
-            <div class="banner hide">
-                <div class="banner-left">
-                    <h2>NEW ARRIVALS ONLY</h2>
-                    <div class="banner-left-wrap">
-                        <div class="banner-left-hand-icon">
-                            <p>new</p>
-                            <img class="banner-left-hand-icon-img" src="/static/image/hand_icon.png" alt="hand icon">
+            <div id="banner-swiper1" class="relative">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-content relative">
+                                <div class="banner_0">
+                                    <div class="banner-left">
+                                        <h2>NEW ARRIVALS ONLY</h2>
+                                        <div class="banner-left-wrap">
+                                            <div class="banner-left-hand-icon">
+                                                <p>new</p>
+                                                <img class="banner-left-hand-icon-img" src="/static/image/hand_icon.png"
+                                                     alt="hand icon">
+                                            </div>
+                                            <p>collections</p>
+                                            <p>for everyone</p>
+                                        </div>
+                                        <div class="banner-left-lastest-btn btn">
+                                            <div>Latest Collection</div>
+                                            <img src="/static/image/arrow.png" class="arrow-line" alt="arrow icon" />
+                                        </div>
+                                    </div>
+                                    <div class="banner-right">
+                                        <img src="/static/image/hero_image.png" alt="hero image">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p>collections</p>
-                        <p>for everyone</p>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide-content relative">
+                                <img class="banner_1" src="/static/image/HomepageBanner_1.jpg" alt="Banner 1">
+                            </div>
+                        </div>
                     </div>
-                    <div class="banner-left-lastest-btn btn">
-                        <div>Latest Collection</div>
-                        <img src="/static/image/arrow.png" alt="arrow icon" />
-                    </div>
-                </div>
 
-                <div class="banner-right">
-                    <img src="/static/image/hero_image.png" alt="hero image">
+                    <!-- Navigation
+                  <div class="swiper_btn_prer swiper_btn"></div>
+                  <div class="swiper_btn_next swiper_btn"></div> -->
                 </div>
             </div>
             <!-- End banner -->
