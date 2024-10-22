@@ -30,11 +30,12 @@
 }
 
 .btn {
-    height: 55px;
-    border-radius: 75px;
+    padding: 0.65rem 3rem;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.1rem;
     outline: none;
+
 }
 
 .btn-for-buy-product {
@@ -115,4 +116,16 @@
     color: var(--price-old-color);
     text-decoration: line-through;
     margin-left: 60px;
+}
+
+.flex {
+    display: flex;
+}
+
+.relative {
+    position: relative;
+}
+
+.cur-pointer {
+    cursor: pointer;
 }

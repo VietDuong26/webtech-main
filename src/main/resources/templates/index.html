@@ -29,10 +29,10 @@
         <div class="header">
             <div class="header_navbar jetbrains-mono">
                 <div class="nav-logo">
-                    <div class="nav-logo-img logo-img" style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative" alt="Logo">
-                        <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
-                    </div>
-                    <p class="nav-logo-name logo-name">shopper</p>
+                    <a th:href="@{/index}" class="flex" title="Homepage">
+                        <img src="/static/image/logo_big.png" alt="Homepage_logo">
+                        <span>SHOPPER</span>
+                    </a>
                 </div>
 
                 <ul class="nav-menu">
@@ -42,16 +42,19 @@
                     <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
                 </ul>
 
-                <div class="nav-login-cart" >
-                    <button th:switch="${user}" class="nav-login-cart-btn btn" >
-                        <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
-                        <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
+                <div class="nav-login-cart">
+                    <button th:switch="${user}" class="nav-login-cart-btn btn">
+                        <a th:case="existed" th:href="@{/login}">Logout</a>
+                        <a th:case="non-existed" th:href="@{/logout}">Login</a>
                     </button>
-                    <div th:switch="${user}" style="width:50px;height:40px;background-image: url('/static/image/cart_icon.png');background-size: 100% 100%;position: relative">
-                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="existed" th:href="@{/Cart}"></a>
-                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                    <div class="relative cur-pointer header-cart">
+                        <div th:switch="${user}">
+                            <a th:case="existed" th:href="@{/Cart}"></a>
+                            <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                            <img src="/static/image/cart_icon.png" alt="Cart Icon">
+                        </div>
+                        <div class="nav-login-cart-count" th:text="${cart_size}"></div>
                     </div>
-                    <div class="nav-login-cart-count" th:text="${cart_size}"></div>
                 </div>
             </div>
         </div>
@@ -89,8 +92,10 @@
                 <hr class="hr-for-popular-collections" />
                 <div class="popular-item" th:each="product:${popular_products}">
                     <div>
-                        <a style="text-decoration: none;" href=""><!--Chuyển tới trang chi tiết sản phẩm nhận vào id sản phẩm-->
-                            <img class="popular-item-img item-img-size" th:src="'/static/image/'+${product.image}" alt="">
+                        <a style="text-decoration: none;"
+                            href=""><!--Chuyển tới trang chi tiết sản phẩm nhận vào id sản phẩm-->
+                            <img class="popular-item-img item-img-size" th:src="'/static/image/'+${product.image}"
+                                alt="">
                             <p class="popular-item-name item-name" th:text="${product.productName}"></p>
                         </a>
                         <span class="popular-item-price item-price">
@@ -124,11 +129,12 @@
                 <div class="collections" th:each="product:${latest_products}">
                     <div>
                         <a style="text-decoration: none;" href="">
-                            <img class="collections-item-img item-img-size" th:src="${'/static/image/'+product.image}" alt="">
+                            <img class="collections-item-img item-img-size" th:src="${'/static/image/'+product.image}"
+                                alt="">
                             <p class="collections-item-name item-name" th:text="${product.productName}"></p>
                         </a>
                         <span class="collections-item-price item-price">
-                            <p class="collections-item-new-price item-new-price"th:text="${product.price}"></p>
+                            <p class="collections-item-new-price item-new-price" th:text="${product.price}"></p>
                             <a th:href="${'/detail/'+product.productId}">Detail</a>
                         </span>
                     </div>
@@ -163,13 +169,16 @@
             </ul>
 
             <div class="footer-social-icon">
-                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/instagram_icon.png');width:25px;height:25px;position:relative;">
+                <div class="footer-icons-container"
+                    style="background-size: 100% 100%;background-image:url('/static/image/instagram_icon.png');width:25px;height:25px;position:relative;">
                     <a href="" style="width:100%;height:100%;position: absolute"></a>
                 </div>
-                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/pintester_icon.png');width:25px;height:25px;position:relative;">
+                <div class="footer-icons-container"
+                    style="background-size: 100% 100%;background-image:url('/static/image/pintester_icon.png');width:25px;height:25px;position:relative;">
                     <a href="" style="width:100%;height:100%;position: absolute"></a>
                 </div>
-                <div class="footer-icons-container" style="background-size: 100% 100%;background-image:url('/static/image/whatsapp_icon.png');width:25px;height:25px;position:relative;">
+                <div class="footer-icons-container"
+                    style="background-size: 100% 100%;background-image:url('/static/image/whatsapp_icon.png');width:25px;height:25px;position:relative;">
                     <a href="" style="width:100%;height:100%;position: absolute"></a>
                 </div>
             </div>

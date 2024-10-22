@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link font jetbrains-mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
     <!-- Link font inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
     <!-- Link font bricolage-grotesque -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
+        rel="stylesheet">
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <!-- Link CSS -->
@@ -22,12 +28,15 @@
     <link rel="stylesheet" href="/static/css/base.css">
     <title>Cart Items</title>
 </head>
+
 <body>
     <div id="main-cartitems-page">
         <div class="header">
             <div class="header_navbar jetbrains-mono">
                 <div class="nav-logo">
-                    <div class="nav-logo-img logo-img" style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative" alt="Logo">
+                    <div class="nav-logo-img logo-img"
+                        style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative"
+                        alt="Logo">
                         <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
                     </div>
                     <p class="nav-logo-name logo-name">shopper</p>
@@ -41,7 +50,7 @@
                 </ul>
 
                 <div class="nav-login-cart">
-                    <button th:switch="${user}" class="nav-login-cart-btn btn" >
+                    <button th:switch="${user}" class="nav-login-cart-btn btn">
                         <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
                         <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
                     </button>
@@ -97,8 +106,9 @@
                         </div>
                     </div>
                     <span th:switch="${cart_items.isEmpty()}">
-                        <a th:case="false" th:href="${'/checkout?cart='+cart_items+'&date='+#dates.createNow()}" class="btn-for-buy-product" >PROCEED TO CHECKOUT</a>
-                        <a th:case="true" class="btn-for-buy-product" >PROCEED TO CHECKOUT</a>
+                        <a th:case="false" th:href="${'/checkout?cart='+cart_items+'&date='+#dates.createNow()}"
+                            class="btn-for-buy-product">PROCEED TO CHECKOUT</a>
+                        <a th:case="true" class="btn-for-buy-product">PROCEED TO CHECKOUT</a>
                     </span>
                 </div>
                 <div class="cartitems-promocode inter">
@@ -108,8 +118,9 @@
                         <button>Submit</button>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
     </div>
 </body>
+
 </html>
