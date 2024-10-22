@@ -26,18 +26,16 @@ public class ProductController {
     UserService userService;
     @Autowired
     CategoryService categoryService;
-    @Autowired
-    CartService cartService;
     @GetMapping("/getAllProduct")
     String getAllProduct(Model model){
         model.addAttribute("products",productService.getAll());
-        return "admin/getAllProduct";
+        return "admin/admin-product-list";
     }
     @GetMapping("/addNewProduct")
     String show_addNewProduct(Model model){
         model.addAttribute("new_product",new ProductDTO());
         model.addAttribute("categories",categoryService.getAll());
-        return "admin/addNewProduct";
+        return "admin/admin-product-add";
     }
     @PostMapping("/addNewProduct")
     String addNewProduct(Model model, @ModelAttribute("new_product")ProductDTO productDTO) throws IOException {
@@ -48,7 +46,7 @@ public class ProductController {
     String show_updateProduct(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_product",productMapper.convertToDTO(productService.findById(id)));
         model.addAttribute("categories",categoryService.getAll());
-        return "admin/updateProduct";
+        return "admin/admin-product-update";
     }
     @PostMapping("/updateProduct")
     String updateProduct(@ModelAttribute("selected_product")ProductDTO productDTO) throws IOException {
@@ -63,7 +61,7 @@ public class ProductController {
     @GetMapping("/findProductByName")
     String findProductByName(Model model,@RequestParam("name")String name){
         model.addAttribute("products",productService.findByName(name));
-        return "admin/getAllProduct";
+        return "admin/admin-product-list";
     }
     @GetMapping("/index")
     String index(Model model){
@@ -71,7 +69,7 @@ public class ProductController {
         model.addAttribute("latest_products",productService.getLatestProducts());
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName()).size());
+            model.addAttribute("cart_size",0);
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);
@@ -83,7 +81,7 @@ public class ProductController {
         model.addAttribute("product",productService.findById(id));
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName()).size());
+            model.addAttribute("cart_size",0);
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);
@@ -95,7 +93,7 @@ public class ProductController {
         model.addAttribute("man_products",productService.findByCategory("Men"));
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName()).size());
+            model.addAttribute("cart_size",0);
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);
@@ -107,7 +105,7 @@ public class ProductController {
         model.addAttribute("woman_products",productService.findByCategory("Women"));
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName()).size());
+            model.addAttribute("cart_size",0);
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);
@@ -119,7 +117,7 @@ public class ProductController {
         model.addAttribute("kid_products",productService.findByCategory("Kid"));
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName()).size());
+            model.addAttribute("cart_size",0);
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);

@@ -91,5 +91,8 @@ public class UserController {
         }
         return "redirect:/login";
     }
-
+    @GetMapping("/admin_index")
+    String getAll(){
+        return "admin/index_admin";
+    }
 }

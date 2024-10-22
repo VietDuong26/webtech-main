@@ -13,12 +13,12 @@ public class ColorController {
     @GetMapping("/getAllColor")
     String getAllColor(Model model){
         model.addAttribute("colors",colorService.getAll());
-        return "admin/getAllColor";
+        return "admin/admin-color_list";
     }
     @GetMapping("/addNewColor")
     String show_addNewColor(Model model){
         model.addAttribute("new_color",new Color());
-        return "admin/addColor";
+        return "admin/admin-color_add";
     }
     @PostMapping("/addNewColor")
     String addNewColor(Model model
@@ -32,7 +32,7 @@ public class ColorController {
     @GetMapping("/updateColor/{id}")
     String show_updateColor(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_color",colorService.findById(id));
-        return "admin/updateColor";
+        return "admin/admin-color_update";
     }
     @PostMapping("/updateColor")
     String updateColor(@ModelAttribute("selected_color")Color color){

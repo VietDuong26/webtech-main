@@ -1,0 +1,55 @@
+:root {
+    --black-color: #000;
+    --white-color: #fff;
+    --btn-color: #D03636;
+    --price-old-color: #7F7F7F;
+    --primary-color: #F43E3A;
+}
+#file-input::-webkit-file-upload-button{
+    display:none;
+}
+* {
+    box-sizing: inherit;
+}
+
+.html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+}
+
+.bricolage-grotesque {
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+.background-for-active {
+  background: #D9D9D9;
+}
+
+.button {
+  padding: 14px 10px;
+  font-size: 19px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.button-flex {
+  width: 120px;
+}
+
+.list-format-main {
+  display: grid;
+  align-items: center;
+  gap: 20px;
+  color: var(--black-color);
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}

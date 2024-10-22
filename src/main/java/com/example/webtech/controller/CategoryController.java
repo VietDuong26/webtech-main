@@ -14,12 +14,12 @@ public class CategoryController {
     @GetMapping("/getAllCategory")
     String getAllCategory(Model model){
         model.addAttribute("categories",categoryService.getAll());
-        return "admin/getAllCategory";
+        return "admin/admin-category-list";
     }
     @GetMapping("/addNewCategory")
     String show_addNewCategory(Model model){
         model.addAttribute("new_category",new Category());
-        return "admin/addCategory";
+        return "admin/admin-category-add";
     }
     @PostMapping("/addNewCategory")
     String addNewCategory(Model model
@@ -33,7 +33,7 @@ public class CategoryController {
     @GetMapping("/updateCategory/{id}")
     String show_updateCategory(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_category",categoryService.findById(id));
-        return "admin/updateCategory";
+        return "admin/admin-category_update";
     }
     @PostMapping("/updateCategory")
     String updateCategory(@ModelAttribute("selected_category")Category category){
@@ -48,6 +48,6 @@ public class CategoryController {
     @GetMapping("/findCategoryByName")
     String findCategoryByName(Model model,@RequestParam("name")String name){
         model.addAttribute("categories",categoryService.findByName(name));
-        return "admin/getAllCategory";
+        return "admin/admin-category-list";
     }
 }

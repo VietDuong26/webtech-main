@@ -14,12 +14,12 @@ public class SizeController {
     @GetMapping("/getAllSize")
     String getAllSize(Model model){
         model.addAttribute("sizes",sizeService.getAll());
-        return "admin/getAllSize";
+        return "admin/admin-size_list";
     }
     @GetMapping("/addNewSize")
     String show_addNewSize(Model model){
         model.addAttribute("new_size",new Size());
-        return "admin/addSize";
+        return "admin/admin-size_add";
     }
     @PostMapping("/addNewSize")
     String addNewColor(Model model
@@ -33,7 +33,7 @@ public class SizeController {
     @GetMapping("/updateSize/{id}")
     String show_updateSize(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_size",sizeService.findById(id));
-        return "admin/updateSize";
+        return "admin/admin-size_update";
     }
     @PostMapping("/updateSize")
     String updateSize(@ModelAttribute("selected_size")Size size){

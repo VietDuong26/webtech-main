@@ -14,12 +14,12 @@ public class RoleController {
     @GetMapping("/getAllRole")
     String getAllRole(Model model){
         model.addAttribute("roles",roleService.getAll());
-        return "admin/getAllRole";
+        return "admin/admin-role_list";
     }
     @GetMapping("/addNewRole")
     String show_addNewSize(Model model){
         model.addAttribute("new_role",new Role());
-        return "admin/addRole";
+        return "admin/admin-role_add";
     }
     @PostMapping("/addNewRole")
     String addNewColor(Model model
@@ -33,7 +33,7 @@ public class RoleController {
     @GetMapping("/updateRole/{id}")
     String show_updateRole(Model model,@PathVariable("id")long id){
         model.addAttribute("selected_role",roleService.findById(id));
-        return "admin/updateRole";
+        return "admin/admin-role_update";
     }
     @PostMapping("/updateRole")
     String updateRole(@ModelAttribute("selected_role")Role role){
