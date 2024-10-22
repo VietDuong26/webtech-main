@@ -166,11 +166,37 @@
 }
 
 /* CSS popular */
+.popular-list {
+    justify-content: center;
+}
+
 .popular-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 104px;
-    gap: 20px;
+    margin: 1.75rem 2rem;
+}
+
+.popular-item > a {
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
+    margin: auto;
+}
+
+.popular-item-img {
+    width: 100%;
+    transition: 0.45s ease;
+}
+
+.popular-item > a:hover .popular-item-img {
+    transform: scale(1.1)
+}
+
+.popular-item-deatil {
+    width: 13rem;
+}
+
+.deatil-item-price {
+    align-items: center;
 }
 
 /* CSS offer */
