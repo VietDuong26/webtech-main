@@ -36,3 +36,12 @@ if (location.pathname == '/index') {
         },
     })
 }
+function add(id){
+    window.location='/addToCart?cart_id='+id;
+}
+function remove(id){
+    window.location='/removeFromCart?cart_id='+id;
+}
+function deleteOne(id){
+    window.location='/deleteOneFromCart?cart_id='+id;
+}

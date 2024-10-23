@@ -81,15 +81,15 @@
                         </p>
                     </div>
                     <div class="cart-product-quantity">
-                        <span class="add-quantity">+</span>
+                        <span class="add-quantity" th:onclick="'javascript:add('+${cart_item.id}+')'">+</span>
                         <span class="quantity-product" th:text="${cart_item.quantity}"></span>
-                        <span class="delete-quantity">-</span>
+                        <span class="delete-quantity" th:onclick="'javascript:deleteOne('+${cart_item.id}+')'">-</span>
                     </div>
                     <div class="cart-product-price">
                         <p class="product-price">100.000đ</p>
                     </div>
                     <div class="delet-cart-product">
-                        <span class="delete-product">x</span>
+                        <span class="delete-product" th:onclick="'javascript:remove('+${cart_item.id}+')'">x</span>
                     </div>
                 </div>
             </div>
@@ -97,8 +97,8 @@
         <div class="cart-checkout relative">
             <h2 class="relative">Hóa đơn</h2>
             <div class="checkout-product">
-                <p class="text-upcase">Sản phẩm: <span class="number-item">4</span></p>
-                <p style="text-align: right;"><span class="checkout-product-price">400.000đ</span></p>
+                <p class="text-upcase">Sản phẩm: <span class="number-item" th:text="${cart_items.size()}"></span></p>
+                <p style="text-align: right;"><span class="checkout-product-price" th:text="${total+'đ'}"></span></p>
                 <p style="margin-top: 1.75rem;" class="text-upcase">Phí vận chuyển:</p>
                 <div class="list-shipping flex">
                     <span>Tiêu chuẩn +30.000đ</span>
@@ -113,7 +113,7 @@
                 <div class="line-checkout"></div>
                 <div class="final-checkout">
                     <p>THÀNH TIỀN</p>
-                    <p class="checkout-money">390.000đ</p>
+                    <p class="checkout-money" th:text="${total+30000+'đ'}"></p>
                 </div>
             </div>
         </div>
