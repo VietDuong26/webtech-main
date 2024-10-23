@@ -49,7 +49,6 @@
                 <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
                 <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
             </ul>
-
             <div class="nav-login-cart">
                 <button th:switch="${user}" class="nav-login-cart-btn btn">
                     <a th:case="existed" th:href="@{/login}">Logout</a>
@@ -70,20 +69,20 @@
         <div class="cart-content">
             <div class="cart-title flex">
                 <h2>Giỏ hàng</h2>
-                <p><span class="number-item">4</span><span> sản phẩm</span></p>
+                <p><span class="number-item" th:text="${cart_items.size()}"></span><span> sản phẩm</span></p>
             </div>
             <div class="list-cart-products">
-                <div class="cart-products-item relative flex">
-                    <div class="cart-product-img"><img src="/static/image/product_15.png" alt="Product 15"></div>
+                <div th:each="cart_item:${cart_items}" class="cart-products-item relative flex">
+                    <div class="cart-product-img"><img th:src="'/static/image/'+${cart_item.product.image}" alt="Product 15"></div>
                     <div class="cart-product-detail">
-                        <p class="cart-product-name">Product 15 with the name is very long long long</p>
+                        <p class="cart-product-name" th:text="${cart_item.product.productName}"></p>
                         <p class="cart-product-mini">
-                            <span class="cart-product-size">M</span>, <span class="cart-product-color">Green</span>
+                            <span class="cart-product-size" th:text="${cart_item.size.sizeName}"></span>, <span class="cart-product-color" th:text="${cart_item.color.colorName}"></span>
                         </p>
                     </div>
                     <div class="cart-product-quantity">
                         <span class="add-quantity">+</span>
-                        <span class="quantity-product">1</span>
+                        <span class="quantity-product" th:text="${cart_item.quantity}"></span>
                         <span class="delete-quantity">-</span>
                     </div>
                     <div class="cart-product-price">

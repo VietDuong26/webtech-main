@@ -41,7 +41,6 @@
                 </div>
 
                 <ul class="nav-menu">
-                    <li class="nav-menu-item"><a style="color:grey;">Shop</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
@@ -54,9 +53,8 @@
                     </button>
                     <div class="relative cur-pointer header-cart">
                         <div th:switch="${user}">
-                            <a th:case="existed" th:href="@{/Cart}"></a>
-                            <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
-                            <img src="/static/image/cart_icon.png" alt="Cart Icon">
+                            <img th:case="existed" onclick="window.location='/cart'" src="/static/image/cart_icon.png" alt="Cart Icon">
+                            <img th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')" src="/static/image/cart_icon.png" alt="Cart Icon">
                         </div>
                         <div class="nav-login-cart-count" th:text="${cart_size}"></div>
                     </div>
