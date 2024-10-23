@@ -223,54 +223,65 @@ img.banner_1 {
     align-items: center;
 }
 
+.more-post {
+    display: flex;
+    justify-content: center;
+    margin: 1.25rem 0;
+}
+
+a.link-more-post {
+    scale: 1.45;
+    text-decoration: none;
+    color: var(--black-color);
+    font-weight: bold;
+    background: url(https://globalhok.wordpress.com/wp-content/uploads/2024/08/more-btn.png) center no-repeat;
+    background-size: 600%;
+    background-position: 0px 0px;
+    width: 100px;
+    height: calc(100px*(51 / 229));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    transition: 0.75s ease;
+}
+
+a.link-more-post:hover {
+    scale: 1.5;
+}
+
+.lmp {
+    animation: linnerMorePost 2s both infinite steps(1);
+    -webkit-animation: linnerMorePost 2s both infinite steps(1);
+}
+
 /* CSS offer */
 .offers {
-    display: flex;
-    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
-    height: 576px;
-    width: 1280px;
-    margin: auto;
+    width: 100%;
 }
 
-.offer-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 115px;
-    margin-top: -104px;
+.offers-layout {
+    margin: 4rem auto;
+    width: 1360px;
+    height: 509px;
 }
 
-.offer-left h1 {
-    font-weight: 500;
-    font-size: 60px;
-    margin: 0 0 10px 0
+.offers-layout div {
+    position: absolute;
+    cursor: pointer;
 }
 
-.offer-left p {
-    font-size: 20px;
-    font-weight: 200;
-    margin: 10px 0 25px 0;
+.offers-layout img {
+    width: 100%;
+    transition: 0.35s ease;
 }
 
-.offer-left-btn {
-    width: 220px;
-    height: 55px;
-    background-color: var(--btn-color);
-    color: var(--white-color);
-    border: none;
-    font-size: 19px;
-    font-weight: 300;
+.offers-layout div:hover {
+    z-index: 2;
 }
 
-.offer-right {
-    margin-right: 74px;
-    margin-top: 47px;
-}
-
-.offer-right img {
-    width: 361px;
-    height: 529px;
+.offers-layout div:hover>img {
+    transform: scale(1.07);
 }
 
 /* CSS new collections */

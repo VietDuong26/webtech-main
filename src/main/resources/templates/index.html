@@ -18,7 +18,7 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="./assets/css/animation.css">
+    <link rel="stylesheet" href="/static/css/animation.css">
 
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -111,19 +111,21 @@
 
             <!-- Begin popular -->
             <div class="popular mt-104">
-                <h1 class="homepage-title relative">POPULAR IN WOMENS</h1>
+                <h1 class="homepage-title relative">POPULAR PRODUCTS</h1>
                 <div class="flex-wrap popular-list">
                     <div class="popular-item" th:each="product:${popular_products}">
-                            <a th:href="${'/detail/'+product.productId}">
-                                <img class="popular-item-img" th:src="'/static/image/'+${product.image}"
-                                     th:alt="${product.productName}">
-                            </a>
-                            <div class="popular-item-deatil">
-                                <p class="popular-item-name item-name" th:text="${product.productName}"></p>
-                                <div class="flex deatil-item-price">
-                                    <i class="money-icon"></i><p class="popular-item-new-price item-new-price" th:text="${product.price}">$80</p>
-                                </div>
+                        <a th:href="${'/detail/'+product.productId}">
+                            <img class="popular-item-img" th:src="'/static/image/'+${product.image}" th:alt="${product.productName}">
+                        </a>
+                        <div class="popular-item-deatil">
+                            <p class="popular-item-name item-name" th:text="${product.productName}"></p>
+                            <div class="flex deatil-item-price">
+                                <i class="money-icon"></i><p class="popular-item-new-price item-new-price" th:text="${product.price}">$80</p>
                             </div>
+                        </div>
+                    </div>
+                    <div class="more-post">
+                        <a href="" class="link-more-post lmp"><span>Xem thêm</span></a>
                     </div>
                 </div>
 
@@ -131,16 +133,31 @@
             <!-- End popular -->
 
             <!-- Begin offers -->
-            <div class="offers hide mt-104">
-                <div class="offer-left">
-                    <h1>Exclusive</h1>
-                    <h1>Offers for you</h1>
-                    <p>ONLY ON BEST SELLERS PRODUCTS</p>
-                    <button class="offer-left-btn btn">Check now</button>
-                </div>
-
-                <div class="offer-right">
-                    <img src="/static/image/exclusive_image.png" alt="">
+            <div class="offers margin-layout">
+                <h1 class="homepage-title relative">OFFERS FOR YOU</h1>
+                <div class="offers-layout relative">
+                    <div style="width: 465px; height: 255px; top: 0; left: 0;"><img
+                            src="/static/image/offer_banner/offer1.jpg" alt="BannerOffer"></div>
+                    <div style="width: 296px;height: 254px;top: 255px;left: 0;"><img
+                            src="/static/image/offer_banner/offer2.jpg" alt="BannerOffer"></div>
+                    <div style="width: 169px; height: 254px; top: 255px; left: 296px;"><img
+                            src="/static/image/offer_banner/offer3.jpg" alt="BannerOffer"></div>
+                    <div style="width: 215px; height: 293px; top: 0; left: 465px;"><img
+                            src="/static/image/offer_banner/offer4.jpg" alt="BannerOffer"></div>
+                    <div style="width: 215px; height: 216px; top: 293px; left: 465px;"><img
+                            src="/static/image/offer_banner/offer5.jpg" alt="BannerOffer"></div>
+                    <div style="width: 182px; height: 184px; top: 0; left: 680px"><img
+                            src="/static/image/offer_banner/offer6.jpg" alt="BannerOffer"></div>
+                    <div style="width: 182px; height: 177px; top: 184px; left: 680px"><img
+                            src="/static/image/offer_banner/offer7.jpg" alt="BannerOffer"></div>
+                    <div style="width: 426px; height: 148px; top: 361px; left: 680px"><img
+                            src="/static/image/offer_banner/offer8.jpg" alt="BannerOffer"></div>
+                    <div style="width: 244px; height: 143px; top: 0; left: 862px"><img
+                            src="/static/image/offer_banner/offer9.jpg" alt="BannerOffer"></div>
+                    <div style="width: 244px; height: 218px; top: 143px; left: 862px"><img
+                            src="/static/image/offer_banner/offer10.jpg" alt="BannerOffer"></div>
+                    <div style="width: 254px; height: 509px; top: 0; left: 1106px;"><img
+                            src="/static/image/offer_banner/offer11.jpg" alt="BannerOffer"></div>
                 </div>
             </div>
             <!-- End offers -->
