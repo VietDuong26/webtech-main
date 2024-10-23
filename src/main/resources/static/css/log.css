@@ -1,0 +1,80 @@
+/* CSS Login & Sign Up Page */
+.login-signup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-signup-form {
+    background-color: var(--white-color);
+    width: 758px;
+    margin: auto;
+    border: 1px solid #ccc;
+}
+
+.login-signup-form-wrap-content {
+    margin: auto;
+    padding: 2rem;
+}
+
+.login-signup-form h1 {
+    margin: 0 0 29px 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.login-signup-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.login-signup-fields-input {
+    height: 56px;
+    width: 635px;
+    padding-left: 20px;
+    outline: none;
+    color: var(--black-color);
+    border: 1px solid #acacac;
+    font-size: 16px;
+}
+
+.login-signup-fields-input::placeholder {
+    font-size: 15px;
+}
+
+.login-signup-btn {
+    width: 647px;
+    height: 56px;
+    outline: none;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.login-signup-text-to-switch {
+    margin: 14px 0;
+    font-weight: 400;
+}
+
+.login-signup-text-to-switch span {
+    margin-left: 10px;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-signup-agree {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-signup-agree p {
+    margin: 0;
+}
