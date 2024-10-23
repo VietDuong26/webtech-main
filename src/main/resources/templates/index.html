@@ -112,15 +112,15 @@
             <!-- Begin popular -->
             <div class="popular mt-104">
                 <h1 class="homepage-title relative">POPULAR PRODUCTS</h1>
-                <div class="flex-wrap popular-list">
-                    <div class="popular-item" th:each="product:${popular_products}">
+                <div class="flex-wrap hpporduct-list">
+                    <div class="hpporduct-item" th:each="product:${popular_products}">
                         <a th:href="${'/detail/'+product.productId}">
-                            <img class="popular-item-img" th:src="'/static/image/'+${product.image}" th:alt="${product.productName}">
+                            <img class="hpporduct-item-img" th:src="'/static/image/'+${product.image}" th:alt="${product.productName}">
                         </a>
-                        <div class="popular-item-deatil">
-                            <p class="popular-item-name item-name" th:text="${product.productName}"></p>
+                        <div class="hpporduct-item-deatil">
+                            <p class="hpporduct-item-name item-name" th:text="${product.productName}"></p>
                             <div class="flex deatil-item-price">
-                                <i class="money-icon"></i><p class="popular-item-new-price item-new-price" th:text="${product.price}">$80</p>
+                                <i class="money-icon"></i><p class="hpporduct-item-new-price item-new-price" th:text="${product.price}">$80</p>
                             </div>
                         </div>
                     </div>
@@ -162,20 +162,26 @@
             <!-- End offers -->
 
             <!-- Begin new collections -->
-            <div class="new-collections hide mt-104">
+            <div class="new-collections mt-104">
                 <h1 class="homepage-title relative">NEW COLLECTIONS</h1>
-                <div class="collections" th:each="product:${latest_products}">
-                    <div>
-                        <a style="text-decoration: none;" href="">
-                            <img class="collections-item-img item-img-size" th:src="${'/static/image/'+product.image}"
-                                alt="">
-                            <p class="collections-item-name item-name" th:text="${product.productName}"></p>
+                <div class="flex-wrap hpporduct-list">
+                    <div class="hpporduct-item" th:each="product:${latest_products}">
+                        <a th:href="${'/detail/'+product.productId}">
+                            <img class="hpporduct-item-img" th:src="'/static/image/'+${product.image}"
+                                 th:alt="${product.productName}" src=".assets/img/product_1.png">
                         </a>
-                        <span class="collections-item-price item-price">
-                            <p class="collections-item-new-price item-new-price" th:text="${product.price}"></p>
-                            <a th:href="${'/detail/'+product.productId}">Detail</a>
-                        </span>
+                        <div class="hpporduct-item-deatil">
+                            <p class="hpporduct-item-name item-name" th:text="${product.productName}">Product 1</p>
+                            <div class="flex deatil-item-price">
+                                <i class="money-icon"></i>
+                                <p class="hpporduct-item-new-price item-new-price" th:text="${product.price}">30.000đ
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="more-post">
+                    <a href="" class="link-more-post lmp"><span>Xem thêm</span></a>
                 </div>
             </div>
             <!-- End new collection -->

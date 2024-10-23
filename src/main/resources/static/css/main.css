@@ -12,16 +12,16 @@
     margin: auto 0;
 }
 
-.nav-logo > a {
+.nav-logo>a {
     width: 100%;
     text-decoration: none;
 }
 
-.nav-logo > a > img {
+.nav-logo>a>img {
     height: 50px;
 }
 
-.nav-logo > a > span {
+.nav-logo>a>span {
     line-height: 50px;
     margin-left: 0.45rem;
     font-size: 1.5rem;
@@ -188,16 +188,17 @@ img.banner_1 {
     margin: auto;
 }
 
-/* CSS popular */
-.popular-list {
+
+/* CSS popular, CSS collections */
+.hpporduct-list {
     justify-content: center;
 }
 
-.popular-item {
+.hpporduct-item {
     margin: 1.75rem 1rem;
 }
 
-.popular-item > a {
+.hpporduct-item>a {
     display: block;
     width: 17rem;
     height: 18rem;
@@ -205,16 +206,16 @@ img.banner_1 {
     margin: auto;
 }
 
-.popular-item-img {
+.hpporduct-item-img {
     width: 100%;
     transition: 0.45s ease;
 }
 
-.popular-item > a:hover .popular-item-img {
+.hpporduct-item:hover .hpporduct-item-img {
     transform: scale(1.1)
 }
 
-.popular-item-deatil {
+.hpporduct-item-deatil {
     width: 13rem;
     font-size: 1.2rem;
 }
@@ -285,14 +286,7 @@ a.link-more-post:hover {
 }
 
 /* CSS new collections */
-.collections {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 40px;
-    gap: 45px;
-    justify-content: space-between;
-    padding: 0 104px;
-}
+.collections {}
 
 /* CSS newsletter */
 .newsletter {
