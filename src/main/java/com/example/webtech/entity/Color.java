@@ -22,4 +22,6 @@ public class Color {
     private String colorName;
     @OneToMany(mappedBy = "color")
     private List<Stock> stocks;
+    @OneToMany(mappedBy="color")
+    private List<CartItem> cartItems;
 }

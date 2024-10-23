@@ -16,7 +16,7 @@ import java.util.Set;
 public class ProductDTO {
     private long productId;
     private String productName;
-    private long price;
+    private String price;
     private String description;
     private MultipartFile file;
     private String image;

@@ -41,7 +41,7 @@ public class ProductServiceImplement implements ProductService {
 
     @Override
     public Set<Product> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"productId")).stream().collect(Collectors.toSet());
+        return repository.findAllByOrderByProductIdAsc();
     }
 
 
@@ -52,7 +52,7 @@ public class ProductServiceImplement implements ProductService {
 
     @Override
     public Set<Product> findByName(String name) {
-        return repository.findByProductName(name);
+        return repository.findByProductNameOrderByProductIdAsc(name);
     }
 
     @Override
@@ -61,17 +61,17 @@ public class ProductServiceImplement implements ProductService {
     }
 
     @Override
-    public List<Product> getPopularProducts() {
-        return repository.getPopularProducts();
+    public List<ProductDTO> getPopularProducts() {
+        return repository.getPopularProducts().stream().map(x->mapper.convertToDTO(x)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Product> getLatestProducts() {
-        return repository.getLatestProducts();
+    public List<ProductDTO> getLatestProducts() {
+        return repository.getLatestProducts().stream().map(x->mapper.convertToDTO(x)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Product> findByCategory(String name) {
-        return repository.findByCategory(categoryRepository.findByCategoryName(name));
+    public List<ProductDTO> findByCategory(String name) {
+        return repository.findByCategoryOrderByProductIdAsc(categoryRepository.findByCategoryName(name)).stream().map(x->mapper.convertToDTO(x)).collect(Collectors.toList());
     }
 }

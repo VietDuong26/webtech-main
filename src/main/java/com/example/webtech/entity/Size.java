@@ -22,4 +22,6 @@ public class Size {
     private String sizeName;
     @OneToMany(mappedBy = "size")
     private List<Stock> stocks;
+    @OneToMany(mappedBy="size")
+    private List<CartItem> cartItems;
 }

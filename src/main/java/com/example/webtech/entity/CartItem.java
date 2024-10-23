@@ -23,4 +23,10 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name="color_id")
+    private Color color;
+    @ManyToOne
+    @JoinColumn(name="size_id")
+    private Size size;
 }

@@ -25,7 +25,7 @@ public class Config {
         http.authorizeHttpRequests((request)->request
                 .requestMatchers("/login/**"
                         ,"/regist/**"
-                        ,"/index/**"
+                        ,"/index"
                         ,"/Man_HomePage/**"
                         ,"/Woman_HomePage/**"
                         ,"/Kid_HomePage/**"
@@ -42,7 +42,7 @@ public class Config {
                 ,"/getAllColor/**"
                 ,"/getAllRole/**"
                 ,"/getAllSize/**"
-                ,"/getAllUser/**").hasRole("ADMIN")
+                ,"/getAllUser/**","/getQuantity/**").hasRole("ADMIN")
                 .requestMatchers("/Cart/**").hasRole("USER")
                 .anyRequest().authenticated())
 //                .anyRequest().permitAll())

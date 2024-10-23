@@ -26,6 +26,8 @@ public class ProductController {
     UserService userService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CartService cartService;
     @GetMapping("/getAllProduct")
     String getAllProduct(Model model){
         model.addAttribute("products",productService.getAll());
@@ -69,7 +71,7 @@ public class ProductController {
         model.addAttribute("latest_products",productService.getLatestProducts());
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
             model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",0);
+            model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);

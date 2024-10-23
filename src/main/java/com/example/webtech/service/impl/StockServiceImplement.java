@@ -6,6 +6,8 @@ import com.example.webtech.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockServiceImplement implements StockService {
     @Autowired
@@ -23,5 +25,10 @@ public class StockServiceImplement implements StockService {
     @Override
     public Stock findByProductAndColorAndSize(long product_id, long color_id, long size_id) {
         return repository.findByProduct_ProductIdAndColor_ColorIdAndSize_SizeId(product_id, color_id, size_id);
+    }
+
+    @Override
+    public List<Stock> getAll() {
+        return repository.findAll();
     }
 }

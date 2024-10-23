@@ -1,32 +1,58 @@
 package com.example.webtech.service.impl;
 
 import com.example.webtech.entity.CartItem;
-import com.example.webtech.repository.CartRepository;
+import com.example.webtech.entity.User;
+import com.example.webtech.repository.*;
 import com.example.webtech.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CartServiceImplement implements CartService {
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    ProductRepository productRepository;
+    @Autowired
+    ColorRepository colorRepository;
+    @Autowired
+    SizeRepository sizeRepository;
+    @Autowired
+    UserRepository userRepository;
     @Override
     public List<CartItem> getAllByUserPhone(String phoneNumber) {
         return cartRepository.findCartItemByUser_PhoneNumber(phoneNumber);
     }
 
     @Override
-    public void addToCart(long productId, long quantity) {
-        CartItem cartItem=cartRepository.findCartItemByProduct_ProductId(productId);
-        if(cartItem!=null){
-            if (quantity!=0){
-                cartItem.setQuantity(cartItem.getQuantity()+quantity);
-            }else{
-                cartItem.setQuantity(cartItem.getQuantity()+1);
+    public void addToCart(String cartItemId, String quantity, String productId, String colorId, String sizeId) {
+        User user=userRepository.findByPhoneNumber(SecurityContextHolder.getContext().getAuthentication().getName());
+        if (cartItemId != null) {//Thêm khi đang ở trang giỏ hàng
+            CartItem cartItem = cartRepository.findById(Long.valueOf(cartItemId)).get();
+            cartItem.setQuantity(cartItem.getQuantity() + 1);
+            cartRepository.save(cartItem);
+        } else {//Thêm khi ngoài giỏ hàng
+            CartItem cartItem = cartRepository.findCartItemByUser_UserIdAndProduct_ProductIdAndColor_ColorIdAndSize_SizeId(user.getUserId(),Long.valueOf(productId),Long.valueOf(colorId),Long.valueOf(sizeId));
+            if (cartItem != null) {
+                if (quantity == null) {//Kiểm tra nếu có số lượng hay không? Nếu không thì mặc định thêm 1
+                    cartItem.setQuantity(cartItem.getQuantity() + 1);
+                    cartRepository.save(cartItem);
+                }else{
+                    cartItem.setQuantity(cartItem.getQuantity() + Long.valueOf(quantity));
+                    cartRepository.save(cartItem);
+                }
+            } else {
+                CartItem item=new CartItem();
+                item.setQuantity(1);
+                item.setUser(user);
+                item.setProduct(productRepository.findById(Long.valueOf(productId)).get());
+                item.setColor(colorRepository.findById(Long.valueOf(colorId)).get());
+                item.setSize(sizeRepository.findById(Long.valueOf(sizeId)).get());
+                cartRepository.save(item);
             }
-            cartRepository.save(cartItem);
-        }else{
-            cartRepository.save(cartItem);
         }
     }
 
@@ -36,7 +62,7 @@ public class CartServiceImplement implements CartService {
     }
 
     @Override
-    public CartItem findByProductId(long id) {
-        return cartRepository.findCartItemByProduct_ProductId(id);
+    public CartItem findCartItem(long uid,long pid,long cid,long sid) {
+        return cartRepository.findCartItemByUser_UserIdAndProduct_ProductIdAndColor_ColorIdAndSize_SizeId(uid,pid,cid,sid);
     }
 }

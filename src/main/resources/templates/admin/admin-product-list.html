@@ -73,6 +73,9 @@
                         <img src="/static/image/Product_list_icon.svg" alt="">
                         <p>Product List</p>
                     </div>
+                    <button class="import-button button" >
+                        <a th:href="@{/receipt}">Import</a>
+                    </button>
                 </div>
                 <div class="admin-product">
                     <div class="admin-product-content inter">
@@ -101,7 +104,6 @@
                                             <button class="delete-button button">
                                                 <a th:href="${'/deleteProduct/'+product.productId}">Delete</a>
                                             </button>
-                                            <button class="import-button button">Import</button>
                                         </div>
                                     </div>
                                     <hr />

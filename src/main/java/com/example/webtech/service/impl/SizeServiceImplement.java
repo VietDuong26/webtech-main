@@ -22,7 +22,7 @@ public class SizeServiceImplement implements SizeService {
 
     @Override
     public Set<Size> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"sizeId")).stream().collect(Collectors.toSet());
+        return repository.findAllByOrderBySizeIdAsc();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ColorServiceImplement implements ColorService {
 
     @Override
     public Set<Color> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"colorId")).stream().collect(Collectors.toSet());
+        return repository.findAllByOrderByColorIdAsc();
     }
 
     @Override

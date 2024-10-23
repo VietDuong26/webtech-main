@@ -22,6 +22,7 @@ public class Product {
     private long productId;
     private String productName;
     private long price;
+    @Column(name="description",length = 500)
     private String description;
     private String image;
     private long sale;

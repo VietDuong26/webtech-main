@@ -14,7 +14,7 @@ public interface ProductService {
     void delete(long id);
     Set<Product> findByName(String name);
     Product findById(long id);
-    List<Product> getPopularProducts();
-    List<Product> getLatestProducts();
-    List<Product> findByCategory(String name);
+    List<ProductDTO> getPopularProducts();
+    List<ProductDTO> getLatestProducts();
+    List<ProductDTO> findByCategory(String name);
 }

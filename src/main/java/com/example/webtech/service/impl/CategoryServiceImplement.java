@@ -21,7 +21,7 @@ public class CategoryServiceImplement implements CategoryService {
     }
     @Override
     public Set<Category> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"categoryId")).stream().collect(Collectors.toSet());
+        return repository.findAllByOrderByCategoryIdAsc();
     }
 
     @Override
@@ -31,12 +31,12 @@ public class CategoryServiceImplement implements CategoryService {
 
     @Override
     public Set<Category> findByName(String name) {
-        return repository.findCategoriesByCategoryName(name);
+        return (Set<Category>) repository.findCategoriesByCategoryNameOrderByCategoryIdAsc(name);
     }
 
     @Override
     public boolean checkIfExist(String name) {
-        if(repository.findCategoriesByCategoryName(name).size()==0){
+        if(repository.findCategoriesByCategoryNameOrderByCategoryIdAsc(name).size()==0){
             return false;
         }else{
             return true;

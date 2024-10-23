@@ -12,9 +12,13 @@ import java.util.Set;
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
     Set<Product> findByProductName(String name);
-    List<Product> findByCategory(Category category);
-    @Query(value = "select * from product order by product.sale desc limit 6",nativeQuery = true)
+    List<Product> findByCategoryOrderByProductIdAsc(Category category);
+    @Query(value = "select * from product order by product.sale desc limit 8",nativeQuery = true)
     List<Product> getPopularProducts();
     @Query(value = "select * from product order by product.product_id desc limit 8",nativeQuery = true)
     List<Product> getLatestProducts();
+
+    Set<Product> findAllByOrderByProductIdAsc();
+
+    Set<Product> findByProductNameOrderByProductIdAsc(String name);
 }

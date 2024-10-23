@@ -10,4 +10,6 @@ import java.util.Set;
 @Repository
 public interface ColorRepository extends JpaRepository<Color,Long> {
     List<Color> findByColorName(String name);
+
+    Set<Color> findAllByOrderByColorIdAsc();
 }
