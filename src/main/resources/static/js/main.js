@@ -14,7 +14,7 @@ function setScale() {
         }
     }
     if (location.pathname == '/cart') {
-        const cartElement = document.querySelector(".cart-container")
+        const cartElement = document.querySelector(".cart-container");
         if (window.innerHeight < cartElement.clientHeight) {
             elementChange.style.zoom = window.innerHeight / 720;
             cartElement.style.zoom = window.innerHeight / 580;
