@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/log.css">
     <title>SignUp</title>
 </head>
 <body>
@@ -16,21 +17,32 @@
         <div class="header">
             <div class="header_navbar jetbrains-mono">
                 <div class="nav-logo">
-                    <a href="index.html"><img class="nav-logo-img logo-img" src="/static/image/logo_big.png" alt="Logo"></a>
-                    <p class="nav-logo-name logo-name">shopper</p>
+                    <a th:href="@{/index}" class="flex" title="Homepage">
+                        <img src="./static/image/logo_big.png" alt="Homepage_logo">
+                        <span>SHOPPER</span>
+                    </a>
                 </div>
 
                 <ul class="nav-menu">
-                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
+                    <li class="nav-menu-item"><a style="color:grey;">Shop</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
                 </ul>
 
                 <div class="nav-login-cart">
-                    <button class="nav-login-cart-btn btn">Login</button>
-                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
-                    <div class="nav-login-cart-count">0</div>
+                    <button th:switch="${user}" class="nav-login-cart-btn btn">
+                        <a th:case="existed" th:href="@{/login}">Logout</a>
+                        <a th:case="non-existed" th:href="@{/logout}">Login</a>
+                    </button>
+                    <div class="relative cur-pointer header-cart">
+                        <div th:switch="${user}">
+                            <a th:case="existed" th:href="@{/Cart}"></a>
+                            <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                            <img src="/static/image/cart_icon.png" alt="Cart Icon">
+                        </div>
+                        <div class="nav-login-cart-count" th:text="${cart_size}">0</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,10 +58,11 @@
                         <input class="login-signup-fields-input" type="text" placeholder="Address" th:field="*{address}">
                     </div>
                     <button type="submit" class="login-signup-btn">Continue</button>
-                    <p class="ogin-signup-text-to-switch">Already have an account?<span onclick="window.location='/login'">Login here</span></p>
+                    <p class="login-signup-text-to-switch">Already have an account?<span onclick="window.location='/login'">Login here</span></p>
                 </form>
             </div>
         </div>
     </div>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

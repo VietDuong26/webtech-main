@@ -14,8 +14,10 @@
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <!-- Link CSS -->
-    <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
     <title>ManPage</title>
 </head>
 <body>
@@ -23,29 +25,32 @@
         <div class="header">
             <div class="header_navbar jetbrains-mono">
                 <div class="nav-logo">
-                    <div class="nav-logo-img logo-img" style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative" alt="Logo">
-                        <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
-                    </div>
-                    <p class="nav-logo-name logo-name">shopper</p>
+                    <a th:href="@{/index}" class="flex" title="Homepage">
+                        <img src="/static/image/logo_big.png" alt="Homepage_logo">
+                        <span>SHOPPER</span>
+                    </a>
                 </div>
-    
+
                 <ul class="nav-menu">
-                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
-                    <li class="nav-menu-item"><a style="color:grey">Man</a></li>
-                    <li class="nav-menu-item"><a th:href="@{Woman_HomePage}">Woman</a></li>
+                    <li class="nav-menu-item"><a style="color:grey;">Shop</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
                     <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
                 </ul>
-    
+
                 <div class="nav-login-cart">
-                    <button th:switch="${user}" class="nav-login-cart-btn btn" >
-                        <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
-                        <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
+                    <button th:switch="${user}" class="nav-login-cart-btn btn">
+                        <a th:case="existed" th:href="@{/login}">Logout</a>
+                        <a th:case="non-existed" th:href="@{/logout}">Login</a>
                     </button>
-                    <div th:switch="${user}" style="width:50px;height:40px;background-image: url('/static/image/cart_icon.png');background-size: 100% 100%;position: relative">
-                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="existed" th:href="@{/Cart}"></a>
-                        <a style="position: absolute;width:100%;height:100%;cursor:pointer;" th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                    <div class="relative cur-pointer header-cart">
+                        <div th:switch="${user}">
+                            <a th:case="existed" th:href="@{/Cart}"></a>
+                            <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                            <img src="/static/image/cart_icon.png" alt="Cart Icon">
+                        </div>
+                        <div class="nav-login-cart-count" th:text="${cart_size}"></div>
                     </div>
-                    <div class="nav-login-cart-count" th:text="${cart_size}"></div>
                 </div>
             </div>
         </div>
@@ -58,24 +63,24 @@
                 <p>
                     <span>Showing 1 - 12</span> out of 36 products
                 </p>
-                <div class="shop-category-sort">
-                    Sort by <img src="/static/image/dropdown_icon.png" alt="">
-                </div>
+
             </div>
-            <div class="shop-category-products">
-                <div th:each="product:${man_products}">
-                    <a style="text-decoration: none;" href="" >
-                        <img class="shop-category-item-man item-img-size" th:src="${'/static/image/'+product.image}" alt="">
-                        <p class="shop-category-item-man-name item-name" th:text="${product.productName}"></p>
+            <div class="shop-category-products flex-wrap hpporduct-list">
+                <div class="hpporduct-item" th:each="product:${man_products}">
+                    <a th:href="${'/detail/'+product.productId}">
+                        <img class="hpporduct-item-img" th:src="'/static/image/'+${product.image}" th:alt="${product.productName}">
                     </a>
-                    <span class="shop-category-item-man-price item-price">
-                        <p class="shop-category-item-man-new-price item-new-price" th:text="${product.price}"></p>
-                        <a th:href="${'/detail/'+product.productId}">Detail</a>
-                    </span>
+                    <div class="hpporduct-item-deatil">
+                        <p class="hpporduct-item-name item-name" th:text="${product.productName}"></p>
+                        <div class="flex deatil-item-price">
+                            <i class="money-icon"></i><p class="hpporduct-item-new-price item-new-price" th:text="${product.price}"></p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <div class="shop-category-loadmore jetbrains-mono">
-                Explore More
+            <div class="more-post">
+                <a href="" class="link-more-post lmp"><span>Xem thêm</span></a>
             </div>
         </div>
 
@@ -109,5 +114,6 @@
             </div>
         </div>
     </div>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
