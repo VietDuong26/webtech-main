@@ -63,24 +63,24 @@
                 <p>
                     <span>Showing 1 - 12</span> out of 36 products
                 </p>
-                <div class="shop-category-sort">
-                    Sort by <img src="/static/image/dropdown_icon.png" alt="">
-                </div>
+
             </div>
-            <div class="shop-category-products" th:each="product:${woman_products}">
-                <div>
-                    <a style="text-decoration: none;" href="">
-                        <img class="shop-category-item-woman item-img-size" th:src="${'/static/image/'+product.image}" alt="">
-                        <p class="shop-category-item-woman-name item-name" th:text="${product.productName}"></p>
+            <div class="shop-category-products flex-wrap hpporduct-list">
+                <div class="hpporduct-item" th:each="product:${woman_products}">
+                    <a th:href="${'/detail/'+product.productId}">
+                        <img class="hpporduct-item-img" th:src="'/static/image/'+${product.image}" th:alt="${product.productName}">
                     </a>
-                    <span class="shop-category-item-woman-price item-price">
-                        <p class="shop-category-item-woman-new-price item-new-price" th:text="${product.price}"></p>
-                        <a th:href="${'/detail/'+product.productId}">Detail</a>
-                    </span>
+                    <div class="hpporduct-item-deatil">
+                        <p class="hpporduct-item-name item-name" th:text="${product.productName}"></p>
+                        <div class="flex deatil-item-price">
+                            <i class="money-icon"></i><p class="hpporduct-item-new-price item-new-price" th:text="${product.price}"></p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <div class="shop-category-loadmore jetbrains-mono">
-                Explore More
+            <div class="more-post">
+                <a href="" class="link-more-post lmp"><span>Xem thêm</span></a>
             </div>
         </div>
 
@@ -107,12 +107,13 @@
                     <a href="" style="width:100%;height:100%;position: absolute"></a>
                 </div>
             </div>
-    
+            <div class="line-footer"></div>
             <div class="footer-copyright">
-                <hr />
                 <p>Copyright ©2024 - All Right Reserved.</p>
             </div>
         </div>
     </div>
+    <script src="/static/js/main.js"></script>
+
 </body>
 </html>
