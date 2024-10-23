@@ -8,119 +8,119 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <!-- Link font inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
     <!-- Link font bricolage-grotesque -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap"
+            rel="stylesheet">
     <!-- Reset CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <!-- Link CSS -->
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/cart.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+
     <title>Cart Items</title>
 </head>
 
 <body>
-    <div id="main-cartitems-page">
-        <div class="header">
-            <div class="header_navbar jetbrains-mono">
-                <div class="nav-logo">
-                    <div class="nav-logo-img logo-img"
-                        style="background-image: url('/static/image/logo_big.png');background-size: 100% 100%;position: relative"
-                        alt="Logo">
-                        <a style="width:100px;height:100px;position: absolute" th:href="@{/index}"></a>
-                    </div>
-                    <p class="nav-logo-name logo-name">shopper</p>
-                </div>
+<div id="main-cartitems-page">
+    <div class="header">
+        <div class="header_navbar jetbrains-mono">
+            <div class="nav-logo">
+                <a th:href="@{/index}" class="flex" title="Homepage">
+                    <img src="/static/image/logo_big.png" alt="Homepage_logo">
+                    <span>SHOPPER</span>
+                </a>
+            </div>
 
-                <ul class="nav-menu">
-                    <li class="nav-menu-item"><a th:href="@{/index}">Shop</a></li>
-                    <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
-                    <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
-                    <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
-                </ul>
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a style="color:grey;">Shop</a></li>
+                <li class="nav-menu-item"><a th:href="@{/Man_HomePage}">Man</a></li>
+                <li class="nav-menu-item"><a th:href="@{/Woman_HomePage}">Woman</a></li>
+                <li class="nav-menu-item"><a th:href="@{/Kid_HomePage}">Kid</a></li>
+            </ul>
 
-                <div class="nav-login-cart">
-                    <button th:switch="${user}" class="nav-login-cart-btn btn">
-                        <a th:case="existed" style="text-decoration: none;" th:href="@{/login}">Logout</a>
-                        <a th:case="non-existed" style="text-decoration: none;" th:href="@{/logout}">Login</a>
-                    </button>
-                    <img class="nav-login-cart-img" src="/static/image/cart_icon.png" alt="cart icon">
-                    <div class="nav-login-cart-count" th:text="${cart_items.size()}"></div>
-                </div>
-            </div>
-        </div>
-        <div class="cartitems-container">
-            <div class="cartitems-format-main bricolage-grotesque">
-                <p>Products</p>
-                <p>Title</p>
-                <p>Price</p>
-                <p>Quantity</p>
-                <p>Total</p>
-                <p>Remove</p>
-            </div>
-            <hr />
-            <div class="cartitems-product-wrap bricolage-grotesque" th:each="item:${cart_items}">
-                <div>
-                    <div class="cartitems-format cartitems-format-main">
-                        <img th:src="${'/static/image/'+item.product.image}" alt="" class="cartitems-product-img">
-                        <p th:text="${item.product.productName}"></p>
-                        <p th:text="${item.product.price}"></p>
-                        <a th:href="${'/minusItem/'+item.id}">-</a>
-                        <button class="cartitems-quantity" th:text="${item.quantity}"></button>
-                        <a th:href="${'/addOneToCart/'+item.id}">+</a>
-                        <p th:text="${item.product.price*item.quantity}"></p>
-                        <a th:href="${'/removeAllFromCart/'+item.id}">
-                            <img src="/static/image/cart_cross_icon.png" alt="" class="cartitems-remove-icon">
-                        </a>
+            <div class="nav-login-cart">
+                <button th:switch="${user}" class="nav-login-cart-btn btn">
+                    <a th:case="existed" th:href="@{/login}">Logout</a>
+                    <a th:case="non-existed" th:href="@{/logout}">Login</a>
+                </button>
+                <div class="relative cur-pointer header-cart">
+                    <div th:switch="${user}">
+                        <a th:case="existed" th:href="@{/Cart}"></a>
+                        <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
+                        <img src="/static/image/cart_icon.png" alt="Cart Icon">
                     </div>
-                    <hr />
-                </div>
-            </div>
-            <div class="cartitems-down inter">
-                <div class="cartitems-total">
-                    <h1 class="bricolage-grotesque">Cart Totals</h1>
-                    <div class="cartitems-total-item-wrap">
-                        <div class="cartitems-total-item">
-                            <p>Subtotal</p>
-                            <p th:text="${subtotal}"></p>
-                        </div>
-                        <hr />
-                        <div class="cartitems-total-item">
-                            <p>Shipping Fee</p>
-                            <p>30000 &#8363;</p>
-                        </div>
-                        <hr />
-                        <div class="cartitems-total-item">
-                            <h3>Total</h3>
-                            <h3 th:text="${subtotal+30000}"></h3>
-                        </div>
-                    </div>
-                    <span th:switch="${cart_items.isEmpty()}">
-                        <a th:case="false" th:href="${'/checkout?cart='+cart_items+'&date='+#dates.createNow()}"
-                            class="btn-for-buy-product">PROCEED TO CHECKOUT</a>
-                        <a th:case="true" class="btn-for-buy-product">PROCEED TO CHECKOUT</a>
-                    </span>
-                </div>
-                <div class="cartitems-promocode inter">
-                    <p>If you have a promo code, Enter it here: </p>
-                    <div class="cartitems-promobox">
-                        <input type="text" placeholder='promo code' />
-                        <button>Submit</button>
-                    </div>
+                    <div class="nav-login-cart-count" th:text="${cart_size}">0</div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="cart-container bricolage-grotesque flex">
+        <div class="cart-content">
+            <div class="cart-title flex">
+                <h2>Giỏ hàng</h2>
+                <p><span class="number-item">4</span><span> sản phẩm</span></p>
+            </div>
+            <div class="list-cart-products">
+                <div class="cart-products-item relative flex">
+                    <div class="cart-product-img"><img src="/static/image/product_15.png" alt="Product 15"></div>
+                    <div class="cart-product-detail">
+                        <p class="cart-product-name">Product 15 with the name is very long long long</p>
+                        <p class="cart-product-mini">
+                            <span class="cart-product-size">M</span>, <span class="cart-product-color">Green</span>
+                        </p>
+                    </div>
+                    <div class="cart-product-quantity">
+                        <span class="add-quantity">+</span>
+                        <span class="quantity-product">1</span>
+                        <span class="delete-quantity">-</span>
+                    </div>
+                    <div class="cart-product-price">
+                        <p class="product-price">100.000đ</p>
+                    </div>
+                    <div class="delet-cart-product">
+                        <span class="delete-product">x</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-checkout relative">
+            <h2 class="relative">Hóa đơn</h2>
+            <div class="checkout-product">
+                <p class="text-upcase">Sản phẩm: <span class="number-item">4</span></p>
+                <p style="text-align: right;"><span class="checkout-product-price">400.000đ</span></p>
+                <p style="margin-top: 1.75rem;" class="text-upcase">Phí vận chuyển:</p>
+                <div class="list-shipping flex">
+                    <span>Tiêu chuẩn +30.000đ</span>
+                </div>
+                <div class="promo-code">
+                    <p style="margin-top: 1.75rem;" class="text-upcase">Mã khuyến mại</p>
+                    <input type="text" title="promoCode" placeholder='Nhập mã ABC để nhận khuyến mại'>
+                    <p class="hide promocode-fail">Mã khuyến mại không chính xác</p>
+                    <p class="hide promocode-success">-10.000đ</p>
+                    <span onclick="CheckPromoCode()">Áp dụng</span>
+                </div>
+                <div class="line-checkout"></div>
+                <div class="final-checkout">
+                    <p>THÀNH TIỀN</p>
+                    <p class="checkout-money">390.000đ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/js/main.js"></script>
 </body>
 
 </html>
