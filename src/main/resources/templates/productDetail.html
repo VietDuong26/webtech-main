@@ -75,12 +75,16 @@
         <div class="flex">
             <div class="product-layout-productdisplay flex">
                 <div class="productdisplay-img-list">
-                    <div class="display-product relative">
+                    <div class="display-product open-product relative">
                         <div><img th:src="${'/static/image/'+product.image}" src="/static/image/product_10.png"
                                   alt="">
                         </div>
                     </div>
-
+                    <div class="display-product relative">
+                        <div><img th:src="${'/static/image/'+product.image}" src="/static/image/product_11.png"
+                                  alt="">
+                        </div>
+                    </div>
                 </div>
                 <div class="productdisplay-img">
                     <img th:src="${'/static/image/'+product.image}" src="/static/image/product_10.png" alt=""
@@ -88,34 +92,33 @@
                 </div>
             </div>
             <div class="productdisplay-right inter">
-                <p th:text="${product.productName}">Product 1</p>
+                <p class="productdisplay-name" th:text="${product.productName}">Product 1</p>
                 <div class="productdisplay-right-prices">
                     <p class="productdisplay-right-price-old" th:text="${product.price}">
                         50.000đ
                     </p>
                 </div>
-                <p class="productdisplay-right-description" th:text="${product.description}">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, eligendi libero natus numquam
-                    debitis porro, accusantium beatae impedit minima inventore deleniti veritatis mollitia
-                    perspiciatis
-                    adipisci laudantium explicabo non est obcaecati.
-                </p>
                 <div class="productdisplay-right-size">
-                    <p>Chon kích thước</p>
-                    <select id="select-size" class="productdisplay-right-sizes" style="display:flex;">
-                        <option th:each="stock:${product.stocks}" th:value="${stock.size.sizeId}"
-                                th:text="${stock.size.sizeName}"></option>
-                    </select>
+                    <p>Chọn kích thước</p>
+                    <div value class="select-size flex-wrap">
+                        <button value="S" type="button" class="button-product relative">S</button>
+                        <button value="M" type="button" class="button-product relative">M</button>
+                    </div>
                     <p>Chọn màu</p>
-                    <select id="select-color" class="productdisplay-right-sizes" style="display:flex;">
-                        <option th:each="stock:${product.stocks}" th:value="${stock.color.colorId}"
-                                th:text="${stock.color.colorName}"></option>
-                    </select>
+                    <div value class="select-color flex-wrap">
+                        <button value="HASB1" type="button" class="button-product relative"><img
+                                th:src="${'/static/image/'+product.image}" src="/static/image/product_10.png"
+                                alt="">HASB1</button>
+                        <button value="HASB2" type="button" class="button-product relative"><img
+                                th:src="${'/static/image/'+product.image}" src="/static/image/product_11.png"
+                                alt="">HASB2</button>
+                    </div>
                     <p>Số lượng</p>
                     <div class="set-product-quantity">
                         <span class="add-quantity">+</span>
                         <span class="quantity-product">1</span>
                         <span class="delete-quantity">-</span>
+                        <span class="product-quantity">10 sản phẩm có sẵn</span>
                     </div>
                     <button class="btn-for-buy-product" id="add-to-cart-btn">ADD TO CART</button>
                 </div>
@@ -125,114 +128,81 @@
     <div class="product-layout-descriptionbox inter">
         <div class="descriptionbox-navigator">
             <div class="descriptionbox-nav-box">
-                Description
-            </div>
-            <div class="descriptionbox-nav-box fade">
-                Reviews (122)
+                Mô tả sản phẩm
             </div>
         </div>
         <div class="descriptionbox-description">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea vel officiis, quisquam unde
-                architecto aliquam</p>
-            <p>Tempora illum aspernatur ex eaque deleniti, harum nostrum voluptates quam illo impedit debitis
-                sint quibusdam pariatur vel!</p>
+            <p class="productdisplay-right-description" th:text="${product.description}">Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Quasi, eligendi libero
+                natus numquam debitis porro, accusantium beatae impedit minima inventore deleniti veritatis mollitia
+                perspiciatis adipisci laudantium explicabo non est obcaecati.</p>
+            </p>
         </div>
     </div>
     <div class="product-layout-relatedproduct inter mt-104">
-        <h1 class="for-heading">RELATED PRODUCTS</h1>
-        <hr class="for-hr">
-        <div class="relatedproducts-item">
-            <div>
-                <a style="text-decoration: none;" href="">
-                    <img class="relatedproducts-item-img item-img-size" src="/static/image/product_1.png" alt="">
-                    <p class="relatedproducts-item-name item-name">Striped Flutter Sleeve Overlap Collar Peplum
-                        Hem Blouse</p>
+        <h1 class="homepage-title relative">RELATED PRODUCTS</h1>
+        <div class="relatedproducts flex-wrap hpporduct-list">
+            <div class="hpporduct-item" th:each="product:${popular_products}">
+                <a th:href="${'/detail/'+product.productId}">
+                    <img class="hpporduct-item-img" th:src="'/static/image/'+${product.image}"
+                         th:alt="${product.productName}" src="/static/image/product_1.png">
                 </a>
-                <span class="relatedproducts-item-price item-price">
-                        <p class="relatedproducts-item-new-price item-new-price">$80</p>
-                        <p class="relatedproducts-item-old-price item-old-price">$80</p>
-                    </span>
+                <div class="hpporduct-item-deatil">
+                    <p class="hpporduct-item-name item-name" th:text="${product.productName}">Product 1</p>
+                    <div class="flex deatil-item-price">
+                        <i class="money-icon"></i>
+                        <p class="hpporduct-item-new-price item-new-price" th:text="${product.price}">30.000đ
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <a style="text-decoration: none;" href="">
-                    <img class="relatedproducts-item-img item-img-size" src="/static/image/product_5.png" alt="">
-                    <p class="relatedproducts-item-name item-name">Striped Flutter Sleeve Overlap Collar Peplum
-                        Hem Blouse</p>
-                </a>
-                <span class="relatedproducts-item-price item-price">
-                        <p class="relatedproducts-item-new-price item-new-price">$80</p>
-                        <p class="relatedproducts-item-old-price item-old-price">$80</p>
-                    </span>
+        </div>
+    </div>
+    <div class="footer jetbrains-mono">
+        <div class="footer-logo">
+            <img class="footer-logo-img logo-img" src="/static/image/logo_big.png" alt="">
+            <p class="footer-logo-name logo-name">shopper</p>
+        </div>
+
+        <ul class="footer-links">
+            <li>Branches</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+
+        <div class="footer-social-icon">
+            <div class="footer-icons-container"
+                 style="background-size: 100% 100%;background-image:url('/static/image/instagram_icon.png');width:25px;height:25px;position:relative;">
+                <a href="" style="width:100%;height:100%;position: absolute"></a>
             </div>
-            <div>
-                <a style="text-decoration: none;" href="">
-                    <img class="relatedproducts-item-img item-img-size" src="/static/image/product_3.png" alt="">
-                    <p class="relatedproducts-item-name item-name">Striped Flutter Sleeve Overlap Collar Peplum
-                        Hem Blouse</p>
-                </a>
-                <span class="relatedproducts-item-price item-price">
-                        <p class="relatedproducts-item-new-price item-new-price">$80</p>
-                        <p class="relatedproducts-item-old-price item-old-price">$80</p>
-                    </span>
+            <div class="footer-icons-container"
+                 style="background-size: 100% 100%;background-image:url('/static/image/pintester_icon.png');width:25px;height:25px;position:relative;">
+                <a href="" style="width:100%;height:100%;position: absolute"></a>
             </div>
-            <div>
-                <a style="text-decoration: none;" href="">
-                    <img class="relatedproducts-item-img item-img-size" src="/static/image/product_4.png" alt="">
-                    <p class="relatedproducts-item-name item-name">Striped Flutter Sleeve Overlap Collar Peplum
-                        Hem Blouse</p>
-                </a>
-                <span class="relatedproducts-item-price item-price">
-                        <p class="relatedproducts-item-new-price item-new-price">$80</p>
-                        <p class="relatedproducts-item-old-price item-old-price">$80</p>
-                    </span>
+            <div class="footer-icons-container"
+                 style="background-size: 100% 100%;background-image:url('/static/image/whatsapp_icon.png');width:25px;height:25px;position:relative;">
+                <a href="" style="width:100%;height:100%;position: absolute"></a>
             </div>
+        </div>
+        <div class="line-footer"></div>
+
+        <div class="footer-copyright relative">
+            <p>Copyright ©2024 - All Right Reserved.</p>
         </div>
     </div>
 </div>
 
-<div class="footer jetbrains-mono">
-    <div class="footer-logo">
-        <img class="footer-logo-img logo-img" src="/static/image/logo_big.png" alt="">
-        <p class="footer-logo-name logo-name">shopper</p>
-    </div>
+<!--<script>-->
 
-    <ul class="footer-links">
-        <li>Branches</li>
-        <li>About</li>
-        <li>Contact</li>
-    </ul>
-
-    <div class="footer-social-icon">
-        <div class="footer-icons-container"
-             style="background-size: 100% 100%;background-image:url('/static/image/instagram_icon.png');width:25px;height:25px;position:relative;">
-            <a href="" style="width:100%;height:100%;position: absolute"></a>
-        </div>
-        <div class="footer-icons-container"
-             style="background-size: 100% 100%;background-image:url('/static/image/pintester_icon.png');width:25px;height:25px;position:relative;">
-            <a href="" style="width:100%;height:100%;position: absolute"></a>
-        </div>
-        <div class="footer-icons-container"
-             style="background-size: 100% 100%;background-image:url('/static/image/whatsapp_icon.png');width:25px;height:25px;position:relative;">
-            <a href="" style="width:100%;height:100%;position: absolute"></a>
-        </div>
-    </div>
-    <div class="line-footer"></div>
-    <div class="footer-copyright">
-        <p>Copyright ©2024 - All Right Reserved.</p>
-    </div>
-</div>
-</div>
-<script>
-
-    document.querySelector('#add-to-cart-btn').addEventListener('click', () => {
-        debugger;
-        if (document.querySelector('#select-size').value != "" && document.querySelector('#select-color').value != "") {
-            window.location = '/addToCart?product_id=' + document.querySelector('#product-id').textContent + '&size_id=' + document.querySelector('#select-size').value + '&color_id=' + document.querySelector('#select-color').value;
-        } else {
-            window.location = '/addToCart?product_id=' + document.querySelector('#product-id').textContent + '&sid=' + null + '&cid=' + null;
-        }
-    })
-</script>
+<!--    document.querySelector('#add-to-cart-btn').addEventListener('click', () => {-->
+<!--        debugger;-->
+<!--        if (document.querySelector('#select-size').value != "" && document.querySelector('#select-color').value != "") {-->
+<!--            window.location = '/addToCart?product_id=' + document.querySelector('#product-id').textContent + '&size_id=' + document.querySelector('#select-size').value + '&color_id=' + document.querySelector('#select-color').value;-->
+<!--        } else {-->
+<!--            window.location = '/addToCart?product_id=' + document.querySelector('#product-id').textContent + '&sid=' + null + '&cid=' + null;-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
 <script src="/static/js/main.js"></script>
 <script src="/static/js/productdetail.js"></script>
 

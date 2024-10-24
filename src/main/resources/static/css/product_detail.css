@@ -66,3 +66,117 @@
     background: url("/static/image/display-product.png") 0 0 / 100% 100% no-repeat;
     z-index: 1;
 }
+
+.productdisplay-right {
+    width: 58%;
+}
+
+p.productdisplay-name {
+    font-size: 1.75rem;
+    font-weight: 400;
+    margin: 0.75rem 0;
+}
+
+p.productdisplay-right-price-old {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #243642;
+    background-color: #E2F1E7;
+    padding: 1rem 0 1rem 2rem;
+    width: calc(100% - 2rem);
+    margin: 0.5rem 0;
+}
+
+.productdisplay-right-size>p {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1.15rem;
+}
+
+.button-product {
+    padding: 0.75rem 1.25rem;
+    margin: 0.5rem;
+    outline: none;
+    border-radius: 2px;
+    border: 2px solid #ccc;
+    background-color: #F4F4F4;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.button-product>img {
+    height: 1.2rem;
+}
+
+.select-button {
+    border-color: #387478;
+}
+
+.select-button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 35%;
+    height: 35%;
+    background-color: #387478;
+    border-top-left-radius: 100%;
+}
+
+.set-product-quantity {
+    padding: 1rem;
+}
+
+.set-product-quantity>span {
+    font-size: 1.2rem;
+}
+
+span.add-quantity,
+span.delete-quantity,
+span.quantity-product {
+    font-size: 1.65rem;
+    margin: 0 0.25rem;
+    padding: 0 0.75rem;
+    font-weight: 700;
+}
+
+
+span.quantity-product {
+    font-weight: 200;
+    padding: 00.25rem 0.75rem;
+    border: 1px solid #ccc;
+}
+
+span.product-quantity {
+    color: #686868;
+}
+
+.btn-for-buy-product {
+    background-color: #000;
+    font-weight: 500;
+}
+
+.productdisplay-right-description {
+    --b: 1px;
+    --s: 0.45em;
+    --color: #686868;
+
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    border: 0;
+    display: block;
+    width: 75%;
+    margin: 1.12rem auto 3rem auto;
+    font-size: 1.12rem;
+}
+
+.descriptionbox-nav-box {
+    font-size: 1.75rem;
+    font-weight: 500;
+    padding: 1rem 4rem;
+}
