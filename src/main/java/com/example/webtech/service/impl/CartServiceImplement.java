@@ -65,4 +65,15 @@ public class CartServiceImplement implements CartService {
     public CartItem findCartItem(long uid,long pid,long cid,long sid) {
         return cartRepository.findCartItemByUser_UserIdAndProduct_ProductIdAndColor_ColorIdAndSize_SizeId(uid,pid,cid,sid);
     }
+
+    @Override
+    public void deleteOneFromCart(long id) {
+        CartItem cartItem = cartRepository.findById(id).get();
+        if(cartItem.getQuantity()>1){
+            cartItem.setQuantity(cartItem.getQuantity()-1);
+            cartRepository.save(cartItem);
+        }else{
+            cartRepository.deleteById(id);
+        }
+    }
 }

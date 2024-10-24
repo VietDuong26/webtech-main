@@ -1,5 +1,6 @@
 package com.example.webtech.controller;
 
+import com.example.webtech.entity.CartItem;
 import com.example.webtech.service.CartService;
 import com.example.webtech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,18 @@ public class CartController {
             model.addAttribute("cart_size",0);
         }
         model.addAttribute("cart_items",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()));
+        long total=0;
+        for (CartItem x: cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName())){
+            total+=x.getQuantity()*x.getProduct().getPrice();
+        }
+        model.addAttribute("total",total);
         return "cart";
     }
     @RequestMapping("/addToCart")
-    String addToCart(@RequestParam("product_id") String pid
+    String addToCart(@RequestParam(value = "product_id",required = false) String pid
             , @RequestParam(value = "quantity", required = false) String quantity
-            , @RequestParam("size_id") String sid
-            , @RequestParam("color_id") String cid
+            , @RequestParam(value = "size_id",required = false) String sid
+            , @RequestParam(value = "color_id",required = false) String cid
             , @RequestParam(value = "cart_id", required = false) String cartId) {
         cartService.addToCart(cartId, quantity, pid, sid, cid);
         if (cartId == null) {
@@ -40,5 +46,15 @@ public class CartController {
         }else{
             return "redirect:/cart";
         }
+    }
+    @RequestMapping("/removeFromCart")
+    String removeFromCart(@RequestParam("cart_id")String cartId){
+        cartService.deleteFromCart(Long.valueOf(cartId));
+        return "redirect:/cart";
+    }
+    @RequestMapping("/deleteOneFromCart")
+    String deleteOneFromCart(@RequestParam("cart_id")String cartId){
+        cartService.deleteOneFromCart(Long.valueOf(cartId));
+        return "redirect:/cart";
     }
 }
