@@ -219,3 +219,26 @@ p.promocode-success {
 .checkout-money {
     text-align: right;
 }
+
+.checkout-button {
+    width: 100%;
+    background-color: #1c1c1c;
+    color: #fff;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    border: 1px solid #1c1c1c;
+    -webkit-transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+}
+
+.checkout-button:hover {
+    background-color: #fff;
+    color: #1c1c1c;
+    font-weight: 900;
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
