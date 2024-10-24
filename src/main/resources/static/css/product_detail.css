@@ -1,0 +1,68 @@
+.product-layout-breadcrum {
+    margin: 1.5rem 3rem;
+}
+
+.breadcrum-arrow {
+    width: 0.5rem;
+    height: 1rem;
+    display: block;
+    margin: 0 1rem;
+    background: url("/static/image/breadcrum_arrow.png") 0 0 / 100% 100% no-repeat;
+}
+
+.display-product {
+    width: 5rem;
+    height: 5rem;
+    margin: 0.25rem auto 1.25rem auto;
+    cursor: pointer;
+}
+
+.display-product>div {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.product-layout-productdisplay {
+    margin: 1.5rem;
+}
+
+.display-product>div>img {
+    width: 100%;
+}
+
+.productdisplay-img-list {
+    width: 6rem;
+    height: 422px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.productdisplay-img-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.productdisplay-img-list::-webkit-scrollbar-track {
+
+}
+
+.productdisplay-img-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.productdisplay-img-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.open-product::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -3px;
+    right: -1px;
+    bottom: -1px;
+    background: url("/static/image/display-product.png") 0 0 / 100% 100% no-repeat;
+    z-index: 1;
+}
