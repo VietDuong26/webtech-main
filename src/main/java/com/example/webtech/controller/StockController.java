@@ -1,6 +1,7 @@
 package com.example.webtech.controller;
 
 import com.example.webtech.entity.Stock;
+import com.example.webtech.mapper.ProductMapper;
 import com.example.webtech.service.ColorService;
 import com.example.webtech.service.ProductService;
 import com.example.webtech.service.SizeService;
@@ -24,6 +25,8 @@ public class StockController {
     ProductService productService;
     @Autowired
     StockService stockService;
+    @Autowired
+    ProductMapper mapper;
 
     @GetMapping("/receipt")
     String show_receipt(Model model) {
@@ -43,7 +46,7 @@ public class StockController {
             Stock stock = new Stock();
             stock.setQuantity(Integer.parseInt(quantity));
             stock.setSize(sizeService.findById(Integer.parseInt(size_id)));
-            stock.setProduct(productService.findById(Integer.parseInt(product_id)));
+            stock.setProduct(mapper.convertToEntity(productService.findById(Integer.parseInt(product_id))));
             stock.setColor(colorService.findById(Integer.parseInt(color_id)));
             stockService.saveOrUpdate(stock);
         } else {

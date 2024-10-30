@@ -51,9 +51,10 @@
                 </button>
                 <div class="relative cur-pointer header-cart">
                     <div th:switch="${user}">
-                        <a th:case="existed" th:href="@{/Cart}"></a>
-                        <a th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"></a>
-                        <img src="/static/image/cart_icon.png" alt="Cart Icon">
+                        <img th:case="existed" onclick="window.location='/cart'" src="/static/image/cart_icon.png"
+                             alt="Cart Icon">
+                        <img th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')"
+                             src="/static/image/cart_icon.png" alt="Cart Icon">
                     </div>
                     <div class="nav-login-cart-count" th:text="${cart_size}">0</div>
                 </div>
@@ -66,7 +67,7 @@
             <div class="breadcrum flex">
                 <a th:href="@{/index}">Shop</a>
                 <span class="breadcrum-arrow"></span>
-                <a href="" th:text="${product.category.categoryName}"></a>
+                <a th:href="@{/Kid_HomePage}" th:text="${product.category.categoryName}"></a>
                 <span class="breadcrum-arrow"></span>
                 <span th:text="${product.productName}"></span>
                 <p id="product-id" th:text="${product.productId}" style="display:none"></p>
@@ -92,7 +93,7 @@
                 </div>
             </div>
             <div class="productdisplay-right inter">
-                <p class="productdisplay-name" th:text="${product.productName}">Product 1</p>
+                <p class="productdisplay-name" th:text="${product.productName}"></p>
                 <div class="productdisplay-right-prices">
                     <p class="productdisplay-right-price-old" th:text="${product.price}">
                         50.000đ
@@ -101,26 +102,28 @@
                 <div class="productdisplay-right-size">
                     <p>Chọn kích thước</p>
                     <div value class="select-size flex-wrap">
-                        <button value="S" type="button" class="button-product relative">S</button>
-                        <button value="M" type="button" class="button-product relative">M</button>
+                        <button th:each="stock:${stocks}" th:value="${stock.size.sizeId}" type="button"
+                                class="button-product relative" th:text="${stock.size.sizeName}"
+                                th:onclick="getColor([[${product.productId}]],[[${stock.size.sizeId}]])">
+                        </button>
                     </div>
                     <p>Chọn màu</p>
-                    <div value class="select-color flex-wrap">
-                        <button value="HASB1" type="button" class="button-product relative"><img
-                                th:src="${'/static/image/'+product.image}" src="/static/image/product_10.png"
-                                alt="">HASB1</button>
-                        <button value="HASB2" type="button" class="button-product relative"><img
-                                th:src="${'/static/image/'+product.image}" src="/static/image/product_11.png"
-                                alt="">HASB2</button>
+                    <div id="color-buttons" class="select-color flex-wrap">
                     </div>
                     <p>Số lượng</p>
                     <div class="set-product-quantity">
-                        <span class="add-quantity">+</span>
-                        <span class="quantity-product">1</span>
-                        <span class="delete-quantity">-</span>
-                        <span class="product-quantity">10 sản phẩm có sẵn</span>
+                        <span class="add-quantity" style="cursor: pointer" id="add-quantity" onclick="add()">+</span>
+                        <span class="quantity-product" id="quantity-product">1</span>
+                        <span class="delete-quantity " style="cursor: pointer" id="minus-quantity"
+                              onclick="minus()">-</span>
+                        <span class="product-quantity"><i id="product_quantity">0</i> sản phẩm có sẵn</span>
                     </div>
-                    <button class="btn-for-buy-product" id="add-to-cart-btn">ADD TO CART</button>
+                    <button th:switch="${user}" th:case="existed" class="btn-for-buy-product" id="add-to-cart-btn"
+                            onclick="getInfor()">ADD TO CART
+                    </button>
+                    <button th:switch="${user}" th:case="non-existed" class="btn-for-buy-product"
+                            onclick="alert('Bạn cần đăng nhập!!!')">ADD TO CART
+                    </button>
                 </div>
             </div>
         </div>
@@ -132,10 +135,7 @@
             </div>
         </div>
         <div class="descriptionbox-description">
-            <p class="productdisplay-right-description" th:text="${product.description}">Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Quasi, eligendi libero
-                natus numquam debitis porro, accusantium beatae impedit minima inventore deleniti veritatis mollitia
-                perspiciatis adipisci laudantium explicabo non est obcaecati.</p>
+            <p class="productdisplay-right-description" th:text="${product.description}">
             </p>
         </div>
     </div>
@@ -203,6 +203,9 @@
 <!--        }-->
 <!--    })-->
 <!--</script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/static/js/main.js"></script>
 <script src="/static/js/productdetail.js"></script>
 

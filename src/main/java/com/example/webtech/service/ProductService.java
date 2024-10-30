@@ -13,7 +13,7 @@ public interface ProductService {
     Set<Product> getAll();
     void delete(long id);
     Set<Product> findByName(String name);
-    Product findById(long id);
+    ProductDTO findById(long id);
     List<ProductDTO> getPopularProducts();
     List<ProductDTO> getLatestProducts();
     List<ProductDTO> findByCategory(String name);

@@ -1,0 +1,28 @@
+package com.example.webtech.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
+
+@Entity
+@Table(name="orders")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Orders {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String code;
+    private String createdDate;
+    private String status;
+    private long total;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private User user;
+}

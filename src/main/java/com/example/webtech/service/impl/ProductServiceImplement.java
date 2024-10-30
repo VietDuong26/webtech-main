@@ -35,7 +35,7 @@ public class ProductServiceImplement implements ProductService {
         writeFile.close();
         productDTO.setImage(file_name);
         Product product= mapper.convertToEntity(productDTO);
-        product.setCategory(categoryRepository.findById(productDTO.getCategory_id()).get());
+        product.setCategory(productDTO.getCategory());
         repository.save(product);
     }
 
@@ -56,8 +56,8 @@ public class ProductServiceImplement implements ProductService {
     }
 
     @Override
-    public Product findById(long id) {
-        return repository.findById(id).get();
+    public ProductDTO findById(long id) {
+        return mapper.convertToDTO(repository.findById(id).get());
     }
 
     @Override

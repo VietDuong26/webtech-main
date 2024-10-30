@@ -22,10 +22,10 @@ public class User {
     private String phoneNumber;
     private String password;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<CartItem> cartItems;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="role_id",nullable = false)
     private Role role;
 }

@@ -1,7 +1,11 @@
 package com.example.webtech.service.impl;
 
+import com.example.webtech.entity.OrderItem;
+import com.example.webtech.entity.Orders;
 import com.example.webtech.entity.Role;
 import com.example.webtech.entity.User;
+import com.example.webtech.repository.OrderItemRepository;
+import com.example.webtech.repository.OrderRepository;
 import com.example.webtech.repository.RoleRepository;
 import com.example.webtech.repository.UserRepository;
 import com.example.webtech.service.RoleService;
@@ -23,6 +27,10 @@ public class UserServiceImplement implements UserService {
     RoleRepository roleRepository;
     @Autowired
     RoleService roleService;
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    OrderItemRepository orderItemRepository;
     public UserServiceImplement(UserRepository repository,RoleRepository roleRepository
             , PasswordEncoder passwordEncode
     ){
@@ -39,12 +47,12 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public Set<User> getAll() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC,"userId")).stream().collect(Collectors.toSet());
+        return repository.findAllByOrderByUserIdAsc().stream().collect(Collectors.toSet());
     }
 
     @Override
     public void delete(long id) {
-        repository.deleteById(id);
+        repository.delete(repository.findById(id).get());
     }
 
     @Override
@@ -76,4 +84,5 @@ public class UserServiceImplement implements UserService {
     public User findByPhoneNumber(String phoneNumber) {
         return repository.findByPhoneNumber(phoneNumber);
     }
+
 }

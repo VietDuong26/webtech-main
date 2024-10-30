@@ -44,7 +44,7 @@
                     </button>
                     <div class="relative cur-pointer header-cart">
                         <div th:switch="${user}">
-                            <img th:case="existed" th:href="@{/cart}" src="/static/image/cart_icon.png" alt="Cart Icon">
+                            <img th:case="existed" onclick="window.location='/cart'" src="/static/image/cart_icon.png" alt="Cart Icon">
                             <img th:case="non-existed" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!!!')" src="/static/image/cart_icon.png" alt="Cart Icon">
                         </div>
                         <div class="nav-login-cart-count" th:text="${cart_size}"></div>

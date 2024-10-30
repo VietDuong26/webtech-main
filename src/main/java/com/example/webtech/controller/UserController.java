@@ -22,12 +22,12 @@ public class UserController {
     @GetMapping("/getAllUser")
     String getAllUser(Model model){
         model.addAttribute("users",userService.getAll().stream().filter(x->!x.getRole().getRoleName().equals("ROLE_ADMIN")));
-        return "admin/getAllUser";
+        return "admin/admin-user-list";
     }
     @GetMapping("/addNewUser")
     String show_addNewUser(Model model){
         model.addAttribute("new_user",new User());
-        return "admin/addNewUser";
+        return "admin/admin-user-add";
     }
     @PostMapping("/addNewUser")
     String addNewProduct(@ModelAttribute("new_user")User user){
@@ -39,7 +39,7 @@ public class UserController {
     @GetMapping("/updateUser/{id}")
     String show_updateUser(Model model, @PathVariable("id")long id){
         model.addAttribute("selected_user",userService.findById(id));
-        return "admin/updateUser";
+        return "admin/admin-user-update";
     }
     @PostMapping("/updateUser")
     String updateUser(@ModelAttribute("selected_user")User user){
@@ -54,12 +54,12 @@ public class UserController {
     @GetMapping("/findUserByName")
     String findUserByName(Model model,@RequestParam("name")String name){
         model.addAttribute("users",userService.findByName(name).stream().filter(user->!user.getRole().getRoleName().equals("ROLE_ADMIN")));
-        return "admin/getAllUser";
+        return "admin/admin-user-list";
     }
     @GetMapping("/findUserByRole")
     String findUserByRole(Model model,@RequestParam("id")long id){
         model.addAttribute("users",userService.findByRole(id));
-        return "admin/getAllUser";
+        return "admin/admin-user-list";
     }
     @GetMapping("/login")
     String login(Model model){

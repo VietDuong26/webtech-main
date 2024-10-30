@@ -20,7 +20,7 @@ public class ProductDTO {
     private String description;
     private MultipartFile file;
     private String image;
-    private long category_id;
+    private Category category;
     private String[] sizes;
     private String[] colors;
 }

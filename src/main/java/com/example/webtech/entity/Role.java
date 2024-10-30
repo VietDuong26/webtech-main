@@ -18,6 +18,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long roleId;
     private String roleName;
-    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "role")
     private Set<User> users;
 }

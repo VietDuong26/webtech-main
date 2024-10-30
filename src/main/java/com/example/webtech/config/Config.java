@@ -16,48 +16,54 @@ public class Config {
     private UserDetailsService userDetailsService;
     @Autowired
     SuccessHandler successHandler;
+
     @Bean
-    public static PasswordEncoder passwordEncoder(){
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests((request)->request
-                .requestMatchers("/login/**"
-                        ,"/regist/**"
-                        ,"/index"
-                        ,"/Man_HomePage/**"
-                        ,"/Woman_HomePage/**"
-                        ,"/Kid_HomePage/**"
-                        ,"/detail/**").permitAll()
-                .requestMatchers("/static/**").permitAll()
-                .requestMatchers("/addNewUser/**"
-                ,"/addNewRole/**"
-                ,"/addNewColor/**"
-                ,"/addNewCategory/**"
-                ,"/addNewSize/**"
-                ,"/addNewProduct/**"
-                ,"/getAllProduct/**"
-                ,"/getAllCategory/**"
-                ,"/getAllColor/**"
-                ,"/getAllRole/**"
-                ,"/getAllSize/**"
-                ,"/getAllUser/**","/getQuantity/**").hasRole("ADMIN")
-                .requestMatchers("/Cart/**").hasRole("USER")
-                .anyRequest().authenticated())
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((request) -> request
+                        .requestMatchers("/login/**"
+                                , "/regist/**"
+                                , "/index/**"
+                                , "/Man_HomePage/**"
+                                , "/Woman_HomePage/**"
+                                , "/Kid_HomePage/**"
+                                , "/detail/**",
+                                "/getColorByProductAndSize/**"
+                                , "/getColorByProductAndSizeAndColor/**"
+                                ,"/checkout").permitAll()
+                        .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/addNewUser/**"
+                                , "/addNewRole/**"
+                                , "/addNewColor/**"
+                                , "/addNewCategory/**"
+                                , "/addNewSize/**"
+                                , "/addNewProduct/**"
+                                , "/getAllProduct/**"
+                                , "/getAllCategory/**"
+                                , "/getAllColor/**"
+                                , "/getAllRole/**"
+                                , "/getAllSize/**"
+                                , "/getAllUser/**", "/getQuantity/**").hasRole("ADMIN")
+                        .requestMatchers("/cart/**").hasRole("USER")
+                        .anyRequest().authenticated())
 //                .anyRequest().permitAll())
                 .formLogin(
-                        form->form.loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .successHandler(successHandler)
-                        .permitAll())
-                .logout((logout)->logout.logoutUrl("/logout")
+                        form -> form.loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .successHandler(successHandler)
+                                .permitAll())
+                .logout((logout) -> logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
                         .permitAll());
         return http.build();
     }
+
     @Autowired
-    public void configGlobal(AuthenticationManagerBuilder auth) throws Exception{
+    public void configGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 }

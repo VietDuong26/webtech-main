@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,63 +14,73 @@
   <!-- Reset CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <!-- Link CSS -->
-  <link rel="stylesheet" href="./assets/css/main_admin.css">
-  <link rel="stylesheet" href="./assets/css/base_admin.css">
+  <link rel="stylesheet" href="/static/css/main_admin.css">
+  <link rel="stylesheet" href="/static/css/base_admin.css">
   <title>User</title>
 </head>
 <body>
 <div id="main-admin-page">
   <div class="admin-header">
     <div class="navbar">
-      <img src="./assets/img/nav-logo.svg" alt="" class="nav-logo">
-      <img src="./assets/img/nav-profile.svg" alt="" class="nav-profile">
+      <img src="/static/image/nav-logo.svg" alt="" class="nav-logo">
+      <img src="/static/image/nav-profile.svg" alt="" class="nav-profile">
     </div>
   </div>
   <div class="admin-container">
     <div class="admin-sidebar bricolage-grotesque">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/home-icon.svg" alt="">
-        <a href="">Home</a>
+        <img src="/static/image/home-icon.svg" alt="">
+        <a th:href="@{/admin_index}">Home</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/category-icon.svg" alt="">
-        <a href="">Category</a>
+        <img src="/static/image/category-icon.svg" alt="">
+        <a th:href="@{/getAllCategory}">Category</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/product-icon.svg" alt="">
-        <a href="">Product</a>
+        <img src="/static/image/product-icon.svg" alt="">
+        <a th:href="@{/getAllProduct}">Product</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/color-icon.svg" alt="">
-        <a href="">Color</a>
+        <img src="/static/image/color-icon.svg" alt="">
+        <a th:href="@{/getAllColor}">Color</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/size-icon.svg" alt="">
-        <a href="">Size</a>
+        <img src="/static/image/size-icon.svg" alt="">
+        <a th:href="@{/getAllSize}">Size</a>
+      </div>
+      <hr class="sidebar-menu-item-hr">
+      <div class="sidebar-menu-item">
+        <img src="/static/image/stock-icon.svg" alt="">
+        <a href="">Stock</a>
+      </div>
+      <hr class="sidebar-menu-item-hr">
+      <div class="sidebar-menu-item">
+        <img src="/static/image/order-icon.svg" alt="">
+        <a href="">Order</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item background-for-active">
-        <img src="./assets/img/user-icon.svg" alt="">
+        <img src="/static/image/user-icon.svg" alt="">
         <a href="">User</a>
       </div>
       <hr class="sidebar-menu-item-hr">
       <div class="sidebar-menu-item">
-        <img src="./assets/img/role-icon.svg" alt="">
-        <a href="">Role</a>
+        <img src="/static/image/role-icon.svg" alt="">
+        <a th:href="@{/getAllRole}">Role</a>
       </div>
     </div>
     <div class="admin-content">
       <div class="admin-user-nav bricolage-grotesque">
-        <div class="admin-user-add">
-          <img src="./assets/img/Product_Cart.svg" alt="">
+        <div class="admin-user-add" onclick="window.location='/addNewUser'">
+          <img src="/static/image/Product_Cart.svg" alt="">
           <p>Add user</p>
         </div>
         <div class="admin-user-list background-for-active">
-          <img src="./assets/img/Product_list_icon.svg" alt="">
+          <img src="/static/image/Product_list_icon.svg" alt="">
           <p>User List</p>
         </div>
       </div>
@@ -82,39 +92,22 @@
               <p>User name</p>
               <p>Address</p>
               <p>Phone number</p>
-              <p>Password</p>
-              <p>Role</p>
               <p>Task</p>
             </div>
             <hr />
             <div class="user-list-wrap">
               <div>
-                <div class="user-list-format user-list-format-main list-format-main">
-                  <p>ID001</p>
-                  <p>Duong</p>
-                  <p>Thai Binh</p>
-                  <p>0987654321</p>
-                  <p>12345</p>
-                  <p>Admin</p>
+                <div th:each="user:${users}" class="user-list-format user-list-format-main list-format-main" style="margin-top:10px;">
+                  <p th:text="${user.userId}"></p>
+                  <p th:text="${user.userName}"></p>
+                  <p th:text="${user.address}"></p>
+                  <p th:text="${user.phoneNumber}"></p>
                   <div class="user-list-button">
-                    <button class="edit-button button">Edit</button>
-                    <button class="delete-button button">Delete</button>
+                    <button class="edit-button button"><a th:href="${'/updateUser/'+user.getUserId()}">Edit</a></button>
+                    <button class="delete-button button"><a th:href="${'/deleteUser/'+user.getUserId()}">Delete</a></button>
                   </div>
+                  <hr />
                 </div>
-                <hr />
-                <div class="user-list-format user-list-format-main list-format-main">
-                  <p>ID002</p>
-                  <p>Hung</p>
-                  <p>Ha Noi</p>
-                  <p>0987654321</p>
-                  <p>12345</p>
-                  <p>Admin</p>
-                  <div class="user-list-button">
-                    <button class="edit-button button">Edit</button>
-                    <button class="delete-button button">Delete</button>
-                  </div>
-                </div>
-                <hr />
               </div>
             </div>
           </div>
