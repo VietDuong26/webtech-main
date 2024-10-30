@@ -354,6 +354,16 @@
     font-weight: 500;
 }
 
+a.detail-order-link {
+    position: relative;
+    background-color: #95D2B3;
+    padding: .55rem .75rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #000;
+}
+
 .detail-order-link > div {
     position: absolute;
     right: 0;
@@ -364,15 +374,7 @@
     display: none;
 }
 
-a.detail-order-link.relative {
-    position: relative;
-    background-color: #95D2B3;
-    padding: .55rem .75rem;
-    border-radius: 3px;
-    text-decoration: none;
-    font-size: 1rem;
-    color: #000;
-}
+
 
 .detail-order-link:hover > div {
     display: block;
