@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Orders,String> {
+public interface OrderRepository extends JpaRepository<Orders,java.lang.String> {
     List<Orders> findAllByUserPhoneNumber(String phoneNumber);
     List<Orders> findAllByCode(String code);
 }

@@ -1,8 +1,10 @@
 package com.example.webtech.service.impl;
 
+import com.example.webtech.dto.OrderDto;
 import com.example.webtech.entity.CartItem;
 import com.example.webtech.entity.OrderItem;
 import com.example.webtech.entity.Orders;
+import com.example.webtech.mapper.OrderMapper;
 import com.example.webtech.repository.CartRepository;
 import com.example.webtech.repository.OrderItemRepository;
 import com.example.webtech.repository.OrderRepository;
@@ -16,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class OrdersServiceImplement implements OrdersService {
@@ -27,6 +30,8 @@ public class OrdersServiceImplement implements OrdersService {
     UserRepository userRepository;
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    OrderMapper mapper;
 
     @Override
     public void checkOut() {
@@ -65,7 +70,14 @@ public class OrdersServiceImplement implements OrdersService {
     }
 
     @Override
-    public List<Orders> getAll() {
-        return orderRepository.findAll();
+    public List<OrderDto> getAll() {
+        return orderRepository.findAll().stream().map(x->mapper.toDto(x)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void check(String code) {
+        Orders orders=orderRepository.findById(code).get();
+        orders.setStatus("Checked");
+        orderRepository.save(orders);
     }
 }

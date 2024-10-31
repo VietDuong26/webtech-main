@@ -2,8 +2,11 @@ package com.example.webtech.controller;
 
 import com.example.webtech.entity.CartItem;
 import com.example.webtech.service.CartService;
+import com.example.webtech.service.OrdersService;
 import com.example.webtech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,8 @@ public class CartController {
     CartService cartService;
     @Autowired
     UserService userService;
+    @Autowired
+    OrdersService ordersService ;
     @GetMapping("/cart")
     String showCart(Model model){
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
@@ -55,6 +60,11 @@ public class CartController {
     @RequestMapping("/deleteOneFromCart")
     String deleteOneFromCart(@RequestParam("cart_id")String cartId){
         cartService.deleteOneFromCart(Long.valueOf(cartId));
+        return "redirect:/cart";
+    }
+    @GetMapping("/checkout")
+    String checkout(){
+        ordersService.checkOut();
         return "redirect:/cart";
     }
 }

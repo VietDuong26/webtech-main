@@ -109,9 +109,17 @@
                 <td th:text="${order.total}"></td>
                 <td th:text="${order.status}"></td>
                 <td>
-                  <button type="button" class="btn btn-warning">Check</button>
+                  <button type="button" class="btn btn-warning" ><a th:href="${'/checkOrder?code='+order.code}" style="text-decoration: none;">Check</a></button>
                   <a href="" class="detail-order-link">Detail
-                    <div></div></a>
+                    <div th:if="${order.orderItems.size()!=0}" style="z-index:2;">
+                      <p style="font-weight: bold" th:text="${'Mã đơn hàng: '+order.code}"></p>
+                      <div th:each="item:${order.orderItems}" style="z-index:10;background-color: white">
+                        <p th:text="${'Sản phẩm: '+item.product_id.productName+' Loại: '+item.color_id.colorName+', '+item.size_id.sizeName+' Số lượng: '+item.quantity}"></p>
+                      </div>
+                    </div>
+                    <div th:if="${order.orderItems==null}" style="display:none;">
+                    </div>
+                  </a>
                 </td>
               </tr>
               </tbody>
