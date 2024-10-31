@@ -372,6 +372,7 @@ a.detail-order-link {
     width: 15rem;
     min-height: 3rem;
     display: none;
+    z-index: 2;
 }
 
 
