@@ -46,7 +46,11 @@ public class CartServiceImplement implements CartService {
                 }
             } else {
                 CartItem item=new CartItem();
-                item.setQuantity(1);
+                if(quantity==null){
+                    item.setQuantity(1);
+                }else{
+                    item.setQuantity(Long.parseLong(quantity));
+                }
                 item.setUser(user);
                 item.setProduct(productRepository.findById(Long.valueOf(productId)).get());
                 item.setColor(colorRepository.findById(Long.valueOf(colorId)).get());

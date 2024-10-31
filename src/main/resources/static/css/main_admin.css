@@ -368,7 +368,7 @@ a.detail-order-link {
     position: absolute;
     right: 0;
     top: 142%;
-    background-color: red;
+    border:.5px solid;
     width: 15rem;
     min-height: 3rem;
     display: none;

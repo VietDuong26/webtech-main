@@ -35,9 +35,5 @@ public class ProductRestController {
     StockDTO1 getInfor(@RequestParam("stock_id")long stockId){
         return stockService.findByIdEntity(stockId);
     }
-    @GetMapping("/checkout")
-    ResponseEntity<String> checkout(){
-        ordersService.checkOut();
-        return ResponseEntity.status(HttpStatus.OK).body("successful");
-    }
+
 }

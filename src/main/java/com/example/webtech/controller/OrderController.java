@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OrderController {
@@ -19,5 +20,9 @@ public class OrderController {
         model.addAttribute("orders",ordersService.getAll());
         return "admin/admin-order-list";
     }
-
+    @GetMapping("/checkOrder")
+    String checkOrder(@RequestParam("code")String code){
+        ordersService.check(code);
+        return "redirect:/getAllOrder";
+    }
 }

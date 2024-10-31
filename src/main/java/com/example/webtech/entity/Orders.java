@@ -17,8 +17,7 @@ import java.util.List;
 @Setter
 public class Orders {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String code;
+    private java.lang.String code;
     private String createdDate;
     private String status;
     private long total;

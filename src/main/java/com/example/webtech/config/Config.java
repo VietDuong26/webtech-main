@@ -47,7 +47,8 @@ public class Config {
                                 , "/getAllColor/**"
                                 , "/getAllRole/**"
                                 , "/getAllSize/**"
-                                , "/getAllUser/**", "/getQuantity/**").hasRole("ADMIN")
+                                , "/getAllUser/**", "/getQuantity/**",
+                                "/checkOrder/**").hasRole("ADMIN")
                         .requestMatchers("/cart/**").hasRole("USER")
                         .anyRequest().authenticated())
 //                .anyRequest().permitAll())
