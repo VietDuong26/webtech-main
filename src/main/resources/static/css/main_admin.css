@@ -143,6 +143,7 @@
 .admin-size-content,
 .admin-role-content,
 .admin-user-content,
+.admin-order-content,
 .admin-stock-content {
     display: flex;
     justify-content: center;
@@ -161,7 +162,8 @@
 .add-role,
 .update-role,
 .add-user,
-.update-user {
+.update-user,
+.receipt-stock {
     box-sizing: border-box;
     width: 100%;
     max-width: 800px;
@@ -178,10 +180,12 @@
 .color-itemfield,
 .size-itemfield,
 .role-itemfield,
-.user-itemfield {
+.user-itemfield,
+.stock-itemfield {
     width: 100%;
     color: #333;
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .addproduct-itemfield p,
@@ -190,7 +194,8 @@
 .color-itemfield p,
 .size-itemfield p,
 .role-itemfield p,
-.user-itemfield p {
+.user-itemfield p,
+.stock-itemfield p {
     margin-bottom: 10px;
 }
 
@@ -200,7 +205,8 @@
 .color-itemfield input,
 .size-itemfield input,
 .role-itemfield input,
-.user-itemfield input {
+.user-itemfield input,
+.stock-itemfield input {
     box-sizing: border-box;
     width: 100%;
     height: 50px;
@@ -258,13 +264,24 @@
     border-radius: 4px;
 }
 
+.receipt-category-selector,
+.receipt-color-selector,
+.receipt-size-selector {
+    width: 100%;
+    padding: 10px;
+    color: #7b7b7b;
+    border: 1px solid #7b7b7b8d;
+    border-radius: 4px;
+}
+
 .addproduct-btn,
 .updateproduct-btn,
 .category-btn,
 .color-btn,
 .size-btn,
 .role-btn,
-.user-btn {
+.user-btn,
+.stock-btn {
     margin-top: 20px;
     width: 230px;
     height: 52px;
@@ -275,6 +292,7 @@
     color: #fff;
     font-size: 18px;
     font-weight: 500;
+    margin-bottom: 20px;
 }
 
 /* CSS product list */
@@ -335,7 +353,14 @@
 }
 
 .user-list-format-main {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1.2fr;
+    grid-template-columns: 0.5fr 1fr 1.5fr 1fr 1fr;
+}
+
+.user-list-format-main hr {
+    grid-column: 1 / -1;
+    width: 100%;
+    border: none;
+    height: 1px;
 }
 
 .category-list-button,
@@ -383,4 +408,73 @@ a.detail-order-link {
 
 .detail-order-link:hover > div {
     display: block;
+}
+
+.inventory-stock table,
+.manager-order table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 74px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inventory-stock th,
+.inventory-stock td,
+.manager-order th,
+.manager-order td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 20px;
+}
+
+.inventory-stock td,
+.manager-order td {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.inventory-stock th,
+.manager-order th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: 500;
+}
+
+.inventory-stock td:first-child {
+    max-width: 250px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.inventory-stock td:nth-child(5) {
+    min-width: 140px;
+    white-space: normal;
+}
+
+.manager-order td:nth-child(1) {
+    max-width: 150px;
+    white-space: normal;
+}
+
+.manager-order td:nth-child(2) {
+    min-width: 130px;
+    white-space: normal;
+}
+
+.manager-order td:nth-child(4) {
+    min-width: 100px;
+    white-space: normal;
+}
+
+.manager-order td:nth-child(5) {
+    min-width: 100px;
+    white-space: normal;
+}
+
+.inventory-stock tbody tr:nth-child(even),
+.manager-order tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }

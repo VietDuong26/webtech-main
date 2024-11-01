@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <!-- Link CSS -->
   <link rel="stylesheet" href="/static/css/base_admin.css">
-  <link rel="stylesheet" href="/static/css/reciept.css">
   <link rel="stylesheet" href="/static/css/main_admin.css">
 
   <title>Order</title>
@@ -65,12 +64,12 @@
         <a th:href="@{/getAllStock}">Stock</a>
       </div>
       <hr class="sidebar-menu-item-hr">
-      <div class="sidebar-menu-item">
+      <div class="sidebar-menu-item background-for-active">
         <img src="/static/image/order-icon.svg" alt="">
         <a th:href="@{/getAllOrder}">Order</a>
       </div>
       <hr class="sidebar-menu-item-hr">
-      <div class="sidebar-menu-item background-for-active">
+      <div class="sidebar-menu-item">
         <img src="/static/image/user-icon.svg" alt="">
         <a th:href="@{/getAllUser}">User</a>
       </div>
@@ -81,16 +80,10 @@
       </div>
     </div>
     <div class="admin-content">
-      <div class="admin-category-nav bricolage-grotesque">
-        <div class="admin-category-list background-for-active">
-          <img src="/static/image/Product_list_icon.svg" alt="">
-          <p>Order List</p>
-        </div>
-      </div>
-      <div class="admin-stock">
-        <div class="admin-stock-content inter">
-          <div class="inventory-stock">
-            <table style="width: calc(90%); margin: auto;" class="inter">
+      <div class="admin-order">
+        <div class="admin-order-content inter">
+          <div class="manager-order">
+            <table class="inter">
               <thead>
               <tr>
                 <th>Order Code</th>
@@ -109,7 +102,7 @@
                 <td th:text="${order.total}"></td>
                 <td th:text="${order.status}"></td>
                 <td>
-                  <button type="button" class="btn btn-warning" ><a th:href="${'/checkOrder?code='+order.code}" style="text-decoration: none;">Check</a></button>
+                  <button type="button" class="btn btn-warning" ><a th:href="${'/checkOrder?code='+order.code}" style="text-decoration: none; color: #000;">Check</a></button>
                   <a href="" class="detail-order-link">Detail
                     <div th:if="${order.orderItems.size()!=0}" style="z-index:2;background-color: white">
                       <p style="font-weight: bold" th:text="${'Mã đơn hàng: '+order.code}"></p>

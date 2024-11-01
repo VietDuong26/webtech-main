@@ -20,11 +20,11 @@
 }
 
 .inter {
-  font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .bricolage-grotesque {
-  font-family: "Bricolage Grotesque", sans-serif;
+    font-family: "Bricolage Grotesque", sans-serif;
 }
 
 .background-for-active {
@@ -37,7 +37,17 @@
   border: none;
   border-radius: 16px;
   cursor: pointer;
-  font-weight: 500;
+}
+
+.button:hover,
+.category-btn:hover,
+.color-btn:hover,
+.addproduct-btn:hover,
+.size-btn:hover,
+.role-btn:hover,
+.user-btn:hover,
+.stock-btn:hover {
+  opacity: 0.8;
 }
 
 .button-flex {
@@ -55,6 +65,19 @@
 }
 
 .pull-mid {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.text-button {
+  text-decoration: none;
+  color: var(--black-color);
+}
+
+.text-white {
+  color: var(--white-color) !important;
+}
+
+.mt-1rem {
+ margin-top: 1rem;
 }
