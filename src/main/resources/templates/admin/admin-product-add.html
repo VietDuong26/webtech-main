@@ -57,12 +57,12 @@
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item">
                 <img src="/static/image/stock-icon.svg" alt="">
-                <a href="">Stock</a>
+                <a th:href="@{/getAllStock}">Stock</a>
             </div>
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item">
                 <img src="/static/image/order-icon.svg" alt="">
-                <a href="">Order</a>
+                <a th:href="@{/getAllOrder}">Order</a>
             </div>
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item background-for-active">
@@ -107,7 +107,7 @@
                             </div>
                             <div class="addproduct-itemfield">
                                 <p>Product Category</p>
-                                <select name="category" class='add-product-selector' th:field="*{category_id}">
+                                <select name="category" class='add-product-selector' th:field="*{category}">
                                     <option th:each="category:${categories}" th:value="${category.categoryId}"
                                             th:text="${category.categoryName}"></option>
                                 </select>

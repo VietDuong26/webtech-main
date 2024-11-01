@@ -28,12 +28,26 @@ public class StockController {
     @Autowired
     ProductMapper mapper;
 
+    @GetMapping("/getAllStock")
+    String getAllStock(Model model) {
+        model.addAttribute("stocks", stockService.getAll());
+        return "admin/admin-stock-list";
+    }
+
     @GetMapping("/receipt")
     String show_receipt(Model model) {
         model.addAttribute("sizes", sizeService.getAll());
         model.addAttribute("colors", colorService.getAll());
         model.addAttribute("products", productService.getAll());
         model.addAttribute("new_stock", new Stock());
+        return "admin/receipt";
+    }
+
+    @GetMapping("/receiptById")
+    String showReceiptById(Model model,@RequestParam(value = "product") String product_id,
+                           @RequestParam(value = "color") String color_id,
+                           @RequestParam(value = "size") String size_id) {
+        model.addAttribute("slt_stock",stockService.findByProductAndColorAndSize(Long.parseLong(product_id), Long.parseLong(color_id), Long.parseLong(size_id)));
         return "admin/receipt";
     }
 
@@ -54,8 +68,7 @@ public class StockController {
             stock.setQuantity(stock.getQuantity() + Long.parseLong(quantity));
             stockService.saveOrUpdate(stock);
         }
-
-        return "redirect:/receipt";
+        return "redirect:/getAllStock";
     }
 
     @GetMapping("/stock")

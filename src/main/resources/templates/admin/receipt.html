@@ -16,6 +16,7 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="/static/css/main_admin.css">
     <link rel="stylesheet" href="/static/css/base_admin.css">
+    <link rel="stylesheet" href="/static/css/reciept_second.css">
     <title>Stock</title>
 </head>
 <body>
@@ -55,17 +56,17 @@
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item">
                 <img src="/static/image/stock-icon.svg" alt="">
-                <a href="">Stock</a>
+                <a th:href="@{/getAllStock}">Stock</a>
             </div>
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item">
                 <img src="/static/image/order-icon.svg" alt="">
-                <a href="">Order</a>
+                <a th:href="@{/getAllOrder}">Order</a>
             </div>
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item background-for-active">
                 <img src="/static/image/user-icon.svg" alt="">
-                <a href="">User</a>
+                <a th:href="@{/getAllUser}">User</a>
             </div>
             <hr class="sidebar-menu-item-hr">
             <div class="sidebar-menu-item">
@@ -86,23 +87,50 @@
             </div>
             <div class="admin-stock">
                 <div class="admin-stock-content inter">
-                    <div class="receipt-stock">
+                    <div th:if="${slt_stock!=null}" class="receipt-stock">
+                        <form th:action="@{/receipt}" th:object="${slt_stock}" method="post">
+                        <div class="stock-itemfield">
+                            <p>Product category</p>
+                            <select th:field="*{product}" class='receipt-category-selector' >
+                                <option th:value="${slt_stock.product.productId}" th:text="${slt_stock.product.productName}" selected></option>
+                            </select>
+                        </div>
+                        <div class="stock-itemfield">
+                            <p>Color</p>
+                            <select th:field="*{color}" class='receipt-color-selector' >
+                                <option th:value="${slt_stock.color.colorId}" th:text="${slt_stock.color.colorName}" selected></option>
+                            </select>
+                        </div>
+                        <div class="stock-itemfield">
+                            <p>Size</p>
+                            <select th:field="*{size}" class='receipt-size-selector' >
+                                <option th:value="${slt_stock.size.sizeId}" th:text="${slt_stock.size.sizeName}" selected></option>
+                            </select>
+                        </div>
+                        <div class="stock-itemfield">
+                            <p>Quantity</p>
+                            <input th:field="*{quantity}" th:value="${slt_stock.quantity}" type="text" name='name' placeholder='Type number' />
+                        </div>
+                        <span class="pull-mid"><button class='category-btn' type="submit">Import</button></span>
+                        </form>
+                    </div>
+                    <div th:if="${slt_stock==null}" class="receipt-stock">
                         <form th:action="@{/receipt}" method="post" th:object="${new_stock}">
                         <div class="stock-itemfield">
                             <p>Product</p>
-                            <select name="category" th:field="*{product}" class='receipt-category-selector'>
+                            <select th:field="*{product}" name="category" class='receipt-category-selector'>
                                 <option th:each="product:${products}" th:value="${product.productId}" th:text="${product.productName}"></option>
                             </select>
                         </div>
                         <div class="stock-itemfield">
                             <p>Color</p>
-                            <select name="category" th:field="*{color}" class='receipt-color-selector'>
+                            <select th:field="*{color}" name="category" class='receipt-color-selector'>
                                 <option th:each="color:${colors}" th:value="${color.colorId}" th:text="${color.colorName}"></option>
                             </select>
                         </div>
                         <div class="stock-itemfield">
                             <p>Size</p>
-                            <select name="category" class='receipt-size-selector' th:field="*{size}">
+                            <select th:field="*{size}" name="category" class='receipt-size-selector'>
                                 <option th:each="size:${sizes}" th:value="${size.sizeId}" th:text="${size.sizeName}"></option>
                             </select>
                         </div>
@@ -110,7 +138,7 @@
                             <p>Quantity</p>
                             <input th:field="*{quantity}" type="text" name='name' placeholder='Type number' />
                         </div>
-                        <span class="pull-mid"><button class='category-btn' type="submit">Import</button></span>
+                        <span class="pull-mid"><button type="submit" class='category-btn'>Import</button></span>
                         </form>
                     </div>
                 </div>

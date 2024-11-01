@@ -101,7 +101,8 @@
 .admin-color-nav,
 .admin-size-nav,
 .admin-role-nav,
-.admin-user-nav {
+.admin-user-nav,
+.admin-stock-nav {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,7 +123,9 @@
 .admin-role-add,
 .admin-role-list,
 .admin-user-add,
-.admin-user-list {
+.admin-user-list,
+.admin-stock-inventory,
+.admin-stock-reciept {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +142,8 @@
 .admin-color-content,
 .admin-size-content,
 .admin-role-content,
-.admin-user-content {
+.admin-user-content,
+.admin-stock-content {
     display: flex;
     justify-content: center;
 }
