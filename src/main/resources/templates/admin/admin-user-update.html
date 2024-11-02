@@ -86,7 +86,7 @@
             <h1>Update User</h1>
             <div class="user-itemfield">
               <p>ID</p>
-              <input type="text" name='name' placeholder='Type here' readonly th:value="${selected_user.userId}"/>
+              <input type="text" name='name' placeholder='Type here' readonly th:value="${selected_user.userId}" th:field="*{userId}"/>
             </div>
             <div class="user-itemfield">
               <p>User name</p>

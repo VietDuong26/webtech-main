@@ -106,7 +106,7 @@
                             </div>
                             <div class="updateproduct-itemfield">
                                 <p>Product Category</p>
-                                <select th:field="*{category_id}" name="category" class='update-product-selector'>
+                                <select th:field="*{category.categoryId}" name="category" class='update-product-selector'>
                                     <option th:each="category:${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                 </select>
                             </div>

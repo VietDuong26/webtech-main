@@ -17,6 +17,11 @@ public class ProductMapper {
         Locale locale=new Locale("vn","VN");
         return NumberFormat.getCurrencyInstance(locale).format(price);
     }
+    public long formatPriceModel(String price){
+        String priceFormatted1=price.replace("₫ ","");
+        long priceFormatted2= Long.parseLong(priceFormatted1.replace(",",""));
+        return priceFormatted2;
+    }
     public ProductDTO convertToDTO(Product product){
         return ProductDTO.builder()
                 .productId(product.getProductId())
@@ -31,7 +36,7 @@ public class ProductMapper {
         return Product.builder()
                 .productId(productDTO.getProductId())
                 .image(productDTO.getImage())
-                .price(Long.parseLong(productDTO.getPrice()))
+                .price(formatPriceModel(productDTO.getPrice()))
                 .description(productDTO.getDescription())
                 .productName(productDTO.getProductName())
                 .build();
