@@ -21,7 +21,7 @@ public class Orders {
     private String createdDate;
     private String status;
     private long total;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
 }

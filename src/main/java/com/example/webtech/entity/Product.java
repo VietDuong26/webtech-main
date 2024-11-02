@@ -27,10 +27,10 @@ public class Product {
     private String image;
     private long sale;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product")
     private List<CartItem> cartItems;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 
