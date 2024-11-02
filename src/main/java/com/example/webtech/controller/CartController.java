@@ -63,8 +63,8 @@ public class CartController {
         return "redirect:/cart";
     }
     @GetMapping("/checkout")
-    String checkout(){
+    ResponseEntity<Boolean> checkout(){
         ordersService.checkOut();
-        return "redirect:/cart";
+        return ResponseEntity.status(HttpStatus.OK).body(true);
     }
 }
