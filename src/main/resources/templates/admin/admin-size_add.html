@@ -97,14 +97,21 @@
                     <form class="add-size" th:action="@{/addNewSize}" method="post" th:object="${new_size}">
                             <div class="size-itemfield">
                                 <p>Size name</p>
-                                <input th:field="*{sizeName}" type="text" name='name' placeholder='Type here'/>
+                                <input th:field="*{sizeName}" id="input-size" type="text" name='name' placeholder='Type here'/>
                             </div>
-                            <span class="pull-mid"><button type="submit" class='size-btn'>ADD</button></span>
+                            <span class="pull-mid"><button id="size-submit" type="submit" class='size-btn'>ADD</button></span>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('size-submit').addEventListener('click',()=>{
+        if (document.getElementById('input-size').value!=""){
+            e.preventDefault();
+        }
+    })
+</script>
 </body>
 </html>
