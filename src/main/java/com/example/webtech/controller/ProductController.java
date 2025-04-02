@@ -88,7 +88,7 @@ public class ProductController {
         model.addAttribute("product",productService.findById(id));
         model.addAttribute("stocks",stockService.getAllByProductId((int) id));
         Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (object instanceof UsernamePasswordAuthenticationToken){
+        if (!object.equals("anonymousUser")){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -101,7 +101,7 @@ public class ProductController {
     String menIndex(Model model){
         model.addAttribute("man_products",productService.findByCategory("Men"));
         Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (object instanceof UsernamePasswordAuthenticationToken){
+        if (!object.equals("anonymousUser")){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -114,7 +114,7 @@ public class ProductController {
     String womenIndex(Model model){
         model.addAttribute("woman_products",productService.findByCategory("Women"));
         Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (object instanceof UsernamePasswordAuthenticationToken){
+        if (!object.equals("anonymousUser")){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -127,7 +127,7 @@ public class ProductController {
     String kidIndex(Model model){
         model.addAttribute("kid_products",productService.findByCategory("Kid"));
         Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (object instanceof UsernamePasswordAuthenticationToken){
+        if (!object.equals("anonymousUser")){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
