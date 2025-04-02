@@ -50,7 +50,7 @@
         
         <div class="login-signup-container">
             <div class="login-signup-form">
-                <form class="login-signup-form-wrap-content" th:action="@{/login}" method="post" th:object="${user}">
+                <form id="login_form" class="login-signup-form-wrap-content" th:action="@{/login}" method="post" th:object="${user}">
                     <h1>Login</h1>
                     <div class="login-signup-fields">
                         <input class="login-signup-fields-input" type="text" name="username" placeholder="Phone number">

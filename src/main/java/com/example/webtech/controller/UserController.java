@@ -6,12 +6,15 @@ import com.example.webtech.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -73,7 +76,8 @@ public class UserController {
     @GetMapping("/login")
     String login(Model model) {
         model.addAttribute("user", new User());
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())) {
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof AnonymousAuthenticationToken) {
             model.addAttribute("user", "existed");
         } else {
             model.addAttribute("user", "non-existed");
