@@ -4,6 +4,8 @@ import com.example.webtech.dto.ProductDTO;
 import com.example.webtech.mapper.ProductMapper;
 import com.example.webtech.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,12 +73,13 @@ public class ProductController {
     String index(Model model){
         model.addAttribute("popular_products",productService.getPopularProducts());
         model.addAttribute("latest_products",productService.getLatestProducts());
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
-            model.addAttribute("user", "existed");
-            model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
-        }else{
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object.equals("anonymousUser")){
             model.addAttribute("user","non-existed");
             model.addAttribute("cart_size",0);
+        }else{
+            model.addAttribute("user", "existed");
+            model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }
         return "index";
     }
@@ -84,7 +87,8 @@ public class ProductController {
     String detailProduct(@PathVariable("id")long id,Model model){
         model.addAttribute("product",productService.findById(id));
         model.addAttribute("stocks",stockService.getAllByProductId((int) id));
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof UsernamePasswordAuthenticationToken){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -96,7 +100,8 @@ public class ProductController {
     @GetMapping("/Man_HomePage")
     String menIndex(Model model){
         model.addAttribute("man_products",productService.findByCategory("Men"));
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof UsernamePasswordAuthenticationToken){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -108,7 +113,8 @@ public class ProductController {
     @GetMapping("/Woman_HomePage")
     String womenIndex(Model model){
         model.addAttribute("woman_products",productService.findByCategory("Women"));
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof UsernamePasswordAuthenticationToken){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{
@@ -120,7 +126,8 @@ public class ProductController {
     @GetMapping("/Kid_HomePage")
     String kidIndex(Model model){
         model.addAttribute("kid_products",productService.findByCategory("Kid"));
-        if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){
+        Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (object instanceof UsernamePasswordAuthenticationToken){
             model.addAttribute("user", "existed");
             model.addAttribute("cart_size",cartService.getAllByUserPhone(SecurityContextHolder.getContext().getAuthentication().getName()).size());
         }else{

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -77,7 +78,7 @@ public class UserController {
     String login(Model model) {
         model.addAttribute("user", new User());
         Object object=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (object instanceof AnonymousAuthenticationToken) {
+        if (!object.equals("anonymousUser")){
             model.addAttribute("user", "existed");
         } else {
             model.addAttribute("user", "non-existed");
@@ -85,7 +86,7 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/logout")
+    @GetMapping(value = "/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {

@@ -7,6 +7,7 @@ import com.example.webtech.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+
 public class CartController {
     @Autowired
     CartService cartService;
@@ -22,6 +24,7 @@ public class CartController {
     UserService userService;
     @Autowired
     OrdersService ordersService ;
+
     @GetMapping("/cart")
     String showCart(Model model){
         if (userService.checkIfExist(SecurityContextHolder.getContext().getAuthentication().getName())){

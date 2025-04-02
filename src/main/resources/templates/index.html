@@ -49,7 +49,7 @@
 
                 <div class="nav-login-cart">
                     <button th:switch="${user}" class="nav-login-cart-btn btn">
-                        <a th:case="existed" th:href="@{/login}">Logout</a>
+                        <a th:case="existed" th:href="@{/logout}">Logout</a>
                         <a th:case="non-existed" th:href="@{/logout}">Login</a>
                     </button>
                     <div class="relative cur-pointer header-cart">

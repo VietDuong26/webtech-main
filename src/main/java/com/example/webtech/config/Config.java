@@ -51,7 +51,6 @@ public class Config {
                                 "/checkOrder/**").hasRole("ADMIN")
                         .requestMatchers("/cart/**").hasRole("USER")
                         .anyRequest().authenticated())
-//                .anyRequest().permitAll())
                 .formLogin(
                         form -> form.loginPage("/login")
                                 .loginProcessingUrl("/login")
@@ -59,6 +58,9 @@ public class Config {
                                 .permitAll())
                 .logout((logout) -> logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
                         .permitAll());
         return http.build();
     }
